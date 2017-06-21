@@ -6,6 +6,7 @@ Livrable :
   - Github
 
 UML :                                         Temps                            Incertitude    
+
     Use case                                  2H                               1
     Activité                                  1/2J                             1
     Séquence                                  1/2J                             2
