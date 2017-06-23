@@ -1,0 +1,5 @@
+C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Client\bin\Debug\Client.exe.config
+C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Client\bin\Debug\Client.exe
+C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Client\bin\Debug\Client.pdb
+C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Client\obj\Debug\Client.exe
+C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Client\obj\Debug\Client.pdb
