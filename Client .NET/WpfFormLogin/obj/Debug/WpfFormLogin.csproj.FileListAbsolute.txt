@@ -1,0 +1,14 @@
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\bin\Debug\WpfFormLogin.exe.config
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\bin\Debug\WpfFormLogin.exe
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\bin\Debug\WpfFormLogin.pdb
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\App.g.cs
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\WpfFormLogin_MarkupCompile.cache
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\WpfFormLogin_MarkupCompile.lref
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\WpfFormLogin.g.resources
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\WpfFormLogin.Properties.Resources.resources
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\WpfFormLogin.csproj.GenerateResource.Cache
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\WpfFormLogin.exe
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\WpfFormLogin.pdb
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\View\MainWindow.g.cs
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\View\MainWindow.baml
+c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\WpfFormLogin.csprojResolveAssemblyReference.cache
