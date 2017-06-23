@@ -1,0 +1,10 @@
+//Creation du domaine
+glassfish/bin folder
+asadmin --user admin create-domain --portbase 10000 --savemasterpassword=true dadprojetjms
+//admin password : adadproject
+etape 96 - 97 - 
+etape 98 : 
+glassfish/bin folder 
+asadmin  login --host localhost --port 10048
+asadmin  create-jms-resource --restype javax.jms.Queue --property mydes mydes --host localhost --port 20048
+create-jms-resource --restype javax.jms.QueueConnectionFactory  mycon --host localhost --port 20048
