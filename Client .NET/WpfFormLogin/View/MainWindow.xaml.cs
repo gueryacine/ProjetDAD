@@ -32,13 +32,13 @@ namespace WpfFormLogin
             string AppToken = "456e7472657a20766f7472652070687261736520696369";
             Logger Logged = new Logger();
             string Answer = Logged.Login(email,password,AppToken);
-            if (Answer == "Logged")
+            if (Answer == "True")
             {
-                errorMessage.Text = "Logged";
+                errorMessage.Text = Answer;
             }
             else
             {
-                errorMessage.Text = Answer;
+                errorMessage.Text = "Error on email or password";
             }
         }
     }

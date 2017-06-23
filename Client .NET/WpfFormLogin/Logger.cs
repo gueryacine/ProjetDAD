@@ -21,18 +21,23 @@ namespace WpfFormLogin
 
         public string Login(string email, string password, string AppToken)
         {
-            if (email.Length == 0 || password.Length == 0)
+            if (email.Length == 0 || password.Length == 0 || !Regex.IsMatch(email, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
             {
-                return  "Fill all form";
-            }
-            else if (!Regex.IsMatch(email, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
-            {
-                return "Enter a valid email";
+                return  "False";
             }
             else
             {
-                Authentication Logged = new Authentication();
-                return "Logged";
+                //Logique metier
+                AuthenticationProxy proxy = new AuthenticationProxy();
+                string[] files = new string[] { "" };
+                Server_WCF_IIS.MSG msg = new Server_WCF_IIS.MSG();
+                msg.Op_name = "LoginByToken";
+                msg.TokenApp = "456e7472657a20766f7472652070687261736520696369";
+                msg.TokenUser = "";
+                // TODO add msg.Files
+                msg = proxy.Dispatching(msg);
+
+                return msg.Op_statut.ToString();
             }
         }
     }
