@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Windows;
 
 namespace Server_WCF_IIS
 {
@@ -13,83 +14,57 @@ namespace Server_WCF_IIS
     public class AuthenticationService : IAuthenticationService
     {
         private MSG msg;
+        private string tokenApp;
+        private string email;
+        private string password;
+
         public AuthenticationService() { msg = new MSG(); }
 
         public MSG Dispatching(MSG msg)
         {
             if (msg.Op_name == "LoginByToken")
             {
-                //LoginByToken(msg.TokenApp, msg.TokenUser, msg.)
-                if (msg.TokenApp == "456e7472657a20766f7472652070687261736520696369")
-                {
-                    this.msg.Op_infos = "Opération ok";
-                    this.msg.Op_statut = true;
-                }
-                else
-                {
-                    this.msg.Op_infos = "Votre application n'est pas autorisée à communiquer avec nos serveurs.";
-                    this.msg.Op_statut = false;
-                }
+                tokenApp = msg.TokenApp;
+                LoginByToken(tokenApp);
             }
-
+            else if (msg.Op_name == "LoginByPassword")
+            {
+                email = msg.Email;
+                password = msg.Password;
+                LoginByPassword(email, password);
+            }
             return this.msg;
         }
-
-        public string LoginByPassword(string username, string password, string tokenApp)
+        public string LoginByToken(string tokenApp)
+        {
+            if (tokenApp == "456e7472657a20766f7472652070687261736520696369")
+            {
+                msg.Op_infos = "Opération ok";
+                msg.Op_statut = true;
+            }
+            else
+            {
+                msg.Op_infos = "Votre application n'est pas autorisée à communiquer avec nos serveurs.";
+                msg.Op_statut = false;
+            }
+            MessageBox.Show(msg.Op_statut.ToString(), "Token_Application");
+            return msg.Op_statut.ToString();
+        }
+        public string LoginByPassword(string username, string password)
         {
 
             throw new NotImplementedException();//find user by username tchekc password
         }
 
-        public string LoginByToken(string tokenApp, string tokenUser, List<string> files)
+        public string LoadFiles(List<string> files)
         {
-            msg.TokenApp = tokenApp;
-       
-            //find token
-            return msg.TokenApp;
+            throw new NotImplementedException();//find user by username tchekc password
         }
 
         public bool CheckAppToken(string appToken)
         {
             return true;
         }
+    }
 
-    }
-    class Program
-    {
-        //private static string uri;
-        private static ServiceHost host;
-        private static bool open;
-        static void Main(string[] args)
-        {
-            open = false;
-            Affichage();
-            if (ini_serv()) Console.WriteLine("Serveur en écoute"); ;
-            Console.Read();
-        }
-        static bool ini_serv()
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Tentative d'initialisation du serveur WCF");
-            try
-            {
-                host.Open();
-                open = true;
-                Console.WriteLine("Paramétrage ok");
-            }
-            catch (Exception x)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Echec");
-                Console.WriteLine(x.ToString());
-                open = false;
-            }
-            return open;
-        }
-        static void Affichage()
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("*************** WCF Server ***************\n");
-        }
-    }
 }

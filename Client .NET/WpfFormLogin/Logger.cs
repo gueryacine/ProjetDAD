@@ -31,11 +31,24 @@ namespace WpfFormLogin
                 AuthenticationProxy proxy = new AuthenticationProxy();
                 string[] files = new string[] { "" };
                 Server_WCF_IIS.MSG msg = new Server_WCF_IIS.MSG();
-                msg.Op_name = "LoginByToken";
-                msg.TokenApp = "456e7472657a20766f7472652070687261736520696369";
-                msg.TokenUser = "";
-                // TODO add msg.Files
-                msg = proxy.Dispatching(msg);
+
+                    msg.Op_name = "LoginByToken";
+                    msg.TokenApp = AppToken;
+                    msg.TokenUser = ""; 
+                    msg = proxy.Dispatching(msg);
+
+                if(msg.Op_statut == true)
+                {
+                    msg.Op_name = "LoginByPassword";
+                    msg.TokenApp = AppToken;
+                    msg.TokenUser = "";
+                    msg.Password = password;
+                    msg.Email = email;
+
+                    // TODO add msg.Files
+                    msg = proxy.Dispatching(msg);
+                    return msg.Op_statut.ToString();
+                }
 
                 return msg.Op_statut.ToString();
             }

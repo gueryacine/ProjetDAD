@@ -12,11 +12,13 @@ namespace Server_WCF_IIS
     public interface IAuthenticationService
     {
         [OperationContract]
-        string LoginByPassword(string username, string password, string tokenApp);
+        string LoginByPassword(string username, string password);
         [OperationContract]
-        string LoginByToken(string tokenApp, string tokenUser, List<string> files);
+        string LoginByToken(string tokenApp);
         [OperationContract]
         MSG Dispatching(MSG msg);
+        [OperationContract]
+        string LoadFiles(List<string> files);
 
     }
 

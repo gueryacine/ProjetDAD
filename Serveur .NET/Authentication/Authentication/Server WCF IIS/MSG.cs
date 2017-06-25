@@ -17,5 +17,9 @@ namespace Server_WCF_IIS
         public string TokenUser { get; set; }
         [DataMember]
         public object[] data;
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string Password { get; set; }
     }
 }

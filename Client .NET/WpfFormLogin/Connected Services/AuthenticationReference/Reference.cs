@@ -17,12 +17,15 @@ namespace WpfFormLogin.AuthenticationReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MSG", Namespace="http://schemas.datacontract.org/2004/07/Server_WCF_IIS")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(object[]))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
     public partial struct MSG : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Op_infosField;
@@ -32,6 +35,9 @@ namespace WpfFormLogin.AuthenticationReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool Op_statutField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TokenAppField;
@@ -48,6 +54,19 @@ namespace WpfFormLogin.AuthenticationReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
             }
         }
         
@@ -86,6 +105,19 @@ namespace WpfFormLogin.AuthenticationReference {
                 if ((this.Op_statutField.Equals(value) != true)) {
                     this.Op_statutField = value;
                     this.RaisePropertyChanged("Op_statut");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }
@@ -144,22 +176,28 @@ namespace WpfFormLogin.AuthenticationReference {
     public interface IAuthenticationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoginByPassword", ReplyAction="http://tempuri.org/IAuthenticationService/LoginByPasswordResponse")]
-        string LoginByPassword(string username, string password, string tokenApp);
+        string LoginByPassword(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoginByPassword", ReplyAction="http://tempuri.org/IAuthenticationService/LoginByPasswordResponse")]
-        System.Threading.Tasks.Task<string> LoginByPasswordAsync(string username, string password, string tokenApp);
+        System.Threading.Tasks.Task<string> LoginByPasswordAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoginByToken", ReplyAction="http://tempuri.org/IAuthenticationService/LoginByTokenResponse")]
-        string LoginByToken(string tokenApp, string tokenUser, string[] files);
+        string LoginByToken(string tokenApp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoginByToken", ReplyAction="http://tempuri.org/IAuthenticationService/LoginByTokenResponse")]
-        System.Threading.Tasks.Task<string> LoginByTokenAsync(string tokenApp, string tokenUser, string[] files);
+        System.Threading.Tasks.Task<string> LoginByTokenAsync(string tokenApp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Dispatching", ReplyAction="http://tempuri.org/IAuthenticationService/DispatchingResponse")]
         WpfFormLogin.AuthenticationReference.MSG Dispatching(WpfFormLogin.AuthenticationReference.MSG msg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Dispatching", ReplyAction="http://tempuri.org/IAuthenticationService/DispatchingResponse")]
         System.Threading.Tasks.Task<WpfFormLogin.AuthenticationReference.MSG> DispatchingAsync(WpfFormLogin.AuthenticationReference.MSG msg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoadFiles", ReplyAction="http://tempuri.org/IAuthenticationService/LoadFilesResponse")]
+        string LoadFiles(string[] files);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoadFiles", ReplyAction="http://tempuri.org/IAuthenticationService/LoadFilesResponse")]
+        System.Threading.Tasks.Task<string> LoadFilesAsync(string[] files);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -189,20 +227,20 @@ namespace WpfFormLogin.AuthenticationReference {
                 base(binding, remoteAddress) {
         }
         
-        public string LoginByPassword(string username, string password, string tokenApp) {
-            return base.Channel.LoginByPassword(username, password, tokenApp);
+        public string LoginByPassword(string username, string password) {
+            return base.Channel.LoginByPassword(username, password);
         }
         
-        public System.Threading.Tasks.Task<string> LoginByPasswordAsync(string username, string password, string tokenApp) {
-            return base.Channel.LoginByPasswordAsync(username, password, tokenApp);
+        public System.Threading.Tasks.Task<string> LoginByPasswordAsync(string username, string password) {
+            return base.Channel.LoginByPasswordAsync(username, password);
         }
         
-        public string LoginByToken(string tokenApp, string tokenUser, string[] files) {
-            return base.Channel.LoginByToken(tokenApp, tokenUser, files);
+        public string LoginByToken(string tokenApp) {
+            return base.Channel.LoginByToken(tokenApp);
         }
         
-        public System.Threading.Tasks.Task<string> LoginByTokenAsync(string tokenApp, string tokenUser, string[] files) {
-            return base.Channel.LoginByTokenAsync(tokenApp, tokenUser, files);
+        public System.Threading.Tasks.Task<string> LoginByTokenAsync(string tokenApp) {
+            return base.Channel.LoginByTokenAsync(tokenApp);
         }
         
         public WpfFormLogin.AuthenticationReference.MSG Dispatching(WpfFormLogin.AuthenticationReference.MSG msg) {
@@ -211,6 +249,14 @@ namespace WpfFormLogin.AuthenticationReference {
         
         public System.Threading.Tasks.Task<WpfFormLogin.AuthenticationReference.MSG> DispatchingAsync(WpfFormLogin.AuthenticationReference.MSG msg) {
             return base.Channel.DispatchingAsync(msg);
+        }
+        
+        public string LoadFiles(string[] files) {
+            return base.Channel.LoadFiles(files);
+        }
+        
+        public System.Threading.Tasks.Task<string> LoadFilesAsync(string[] files) {
+            return base.Channel.LoadFilesAsync(files);
         }
     }
 }
