@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfFormLogin
+namespace ClientWPF
 {
     using System.Runtime.Serialization;
 

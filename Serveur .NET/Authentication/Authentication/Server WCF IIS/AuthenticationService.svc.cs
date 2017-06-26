@@ -37,9 +37,9 @@ namespace Server_WCF_IIS
             if (tokenApp == "456e7472657a20766f7472652070687261736520696369")
             {
                 msg.Op_infos = "Opération ok";
-                msg.Op_statut = true;
                 MessageBox.Show(msg.Op_statut.ToString(), "Token_Application");
                 LoginByPassword(email, password);
+               // msg.Op_statut = res;
             }
             else
             {
@@ -50,7 +50,8 @@ namespace Server_WCF_IIS
         }
         public string LoginByPassword(string username, string password)
         {
-            Connector.connect(username,password);
+            Connector connector = new Connector();
+            connector.Connect(username,password);
             msg.Op_statut = true;
             return msg.Op_statut.ToString();
         }
@@ -60,10 +61,6 @@ namespace Server_WCF_IIS
             throw new NotImplementedException();//find user by username tchekc password
         }
 
-        public bool CheckAppToken(string appToken)
-        {
-            return true;
-        }
     }
 
 }

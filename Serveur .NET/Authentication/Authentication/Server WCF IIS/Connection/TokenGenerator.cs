@@ -6,9 +6,24 @@ using System.Web;
 
 namespace Server_WCF_IIS.Connection
 {
-    public class UserToken
+    public class TokenGenerator
     {
-        private string BuildSecureToken(int length)
+        private static TokenGenerator instance;
+
+        private TokenGenerator() { }
+
+        public static TokenGenerator Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new TokenGenerator();
+                }
+                return instance;
+            }
+        }
+        public string BuildSecureToken(int length)
         {
             var buffer = new byte[length];
             using (var rngCryptoServiceProvider = new RNGCryptoServiceProvider())

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using WpfFormLogin.Model;
+using ClientWPF.Model;
 
-namespace WpfFormLogin
+namespace ClientWPF
 {
     public class Logger
     {
@@ -30,17 +30,18 @@ namespace WpfFormLogin
                 //Logique metier
                 AuthenticationProxy proxy = new AuthenticationProxy();
                 string[] files = new string[] { "" };
-                Server_WCF_IIS.MSG msg = new Server_WCF_IIS.MSG();
-
-                msg.Op_name = "LoginByToken";
-                msg.TokenApp = AppToken;
-                msg.TokenUser = "";
-                msg.Password = password;
-                msg.Email = email;
+                Server_WCF_IIS.MSG msg = new Server_WCF_IIS.MSG()
+                {
+                    Op_name = "LoginByToken",
+                    TokenApp = AppToken,
+                    TokenUser = "",
+                    Password = password,
+                    Email = email
+                };
                 // TODO add msg.Files
                 msg = proxy.Dispatching(msg);
+
                 return msg.Op_statut.ToString();
-                
             }
         }
     }

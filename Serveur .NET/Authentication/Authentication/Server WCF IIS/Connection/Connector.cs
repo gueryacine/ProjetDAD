@@ -8,20 +8,22 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Windows;
+using Server_WCF_IIS.Connection;
 
 namespace Server_WCF_IIS
 {
     public class Connector
     {
         private MySqlConnection connection;
+        private MySqlDataReader reader;
+        private string TokenUser_confirmation; 
         private string server;
         private string database;
         private string uid;
         private string mdp;
 
-        internal static void connect(string username, string password)
+        public void Connect(string username, string password)
         {
-            MySqlConnection connection;
             string server;
             string database;
             string uid;
@@ -39,7 +41,12 @@ namespace Server_WCF_IIS
             {
                 connection.Open();
                 MessageBox.Show("Connection Open");
-                Check_User(username, password, connection);
+                bool CKU = Check_User(username, password);
+                if (CKU == true)
+                {
+                    TokenUser_confirmation=IsTokenOk(username);
+                }
+                MessageBox.Show(TokenUser_confirmation, "Token User Value");
             }
             catch (MySqlException co)
             {
@@ -48,22 +55,24 @@ namespace Server_WCF_IIS
             }
         }
 
-        private static void Check_User(string username, string password, MySqlConnection connection)
+        private bool Check_User(string username, string password)
         {
-            string select = "SELECT * FROM User " + "WHERE EmailUser = \'" + username + "\'" ;
+            bool credentials = false;
+            string select = "SELECT * FROM User " + "WHERE EmailUser = \'" + username + "\'";
             MySqlCommand cmd = new MySqlCommand(select, connection);
-            using (MySqlDataReader reader = cmd.ExecuteReader())
+            using (reader = cmd.ExecuteReader())
             {
                 if (reader.Read())
                 {
                     string user_db = reader.GetString(1);
                     string hash_db = reader.GetString(2);
-                    if (user_db == username) 
+                    if (user_db == username)
                     {
                         string pass = Connection.EncryptPass.EncryptSHA512Managed(password);
-                        if (hash_db==pass)
+                        if (hash_db == pass)
                         {
                             MessageBox.Show("Login OK", " Welcome to the WHITE HAT organisation");
+                            credentials = true;
                         }
                         else
                         {
@@ -75,15 +84,52 @@ namespace Server_WCF_IIS
                         MessageBox.Show("Login Error", "User not found");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Login Error", "Incorrect username or password.");
-                }
+                reader.Close();
             }
-            
+            return credentials;
         }
 
-        private static bool token 
+        public string IsTokenOk(string username)
+        {
+            string CreateToken=null;
+            string select = "SELECT * FROM User " + "WHERE EmailUser = \'" + username + "\'";
+            MySqlCommand cmd = new MySqlCommand(select, connection);
+            using (reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    string token = reader.GetString(3);
+                    if (token == null)
+                    {
+                        int length = 100;
+                        CreateToken = TokenGenerator.Instance.BuildSecureToken(length);
+                        Update(CreateToken, username);
+                        MessageBox.Show("Generation", "BUILD TOKEN");
+                    }
+                    else
+                    {
+                        CreateToken = SelectToken(username);
+                        MessageBox.Show("OK", "Token_User");
+                    }
+                }
+            }
+            reader.Close();
+            return CreateToken;
+        }
+
+        //Update statement
+        public void Update(string token, string username)
+        {
+            string updateToken = "UPDATE User " + "SET UserToken = \'" + token + "\'" + "WHERE EmailUser = \'" + username + "\'"; ;
+            MySqlCommand cmd = new MySqlCommand(updateToken, connection);
+        }
+        //Select Token
+        public string SelectToken(string username)
+        {
+            string selectToken = "SELECT UserToken FROM User " + "WHERE EmailUser = \'" + username + "\'";
+            MySqlCommand cmd = new MySqlCommand(selectToken, connection);
+            return selectToken;
+        }
         //Close connection
         private bool CloseConnection()
         {
@@ -97,29 +143,6 @@ namespace Server_WCF_IIS
                 MessageBox.Show(ex.Message);
                 return false;
             }
-        }
-
-        //Update statement
-        public void Update(string username, string password)
-        {
-            string update = "UPDATE User " + "SET HashUser = \'" + password + "\'" + "WHERE EmailUser = \'" + username + "\'"; ;
-
-            //Open connection
-            //if (this.OpenConnection() == true)
-            //{
-            //    //create mysql command
-            //    MySqlCommand cmd = new MySqlCommand();
-            //    //Assign the query using CommandText
-            //    cmd.CommandText = update;
-            //    //Assign the connection using Connection
-            //    cmd.Connection = connection;
-
-            //    //Execute query
-            //    cmd.ExecuteNonQuery();
-
-            //    //close connection
-            //    this.CloseConnection();
-            //}
         }
 
         //Select statement
@@ -160,7 +183,7 @@ namespace Server_WCF_IIS
             //}
             //else
             //{
-                return list;
+            return list;
             //}
         }
 

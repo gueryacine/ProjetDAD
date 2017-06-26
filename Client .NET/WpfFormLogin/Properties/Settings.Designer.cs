@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfFormLogin.Properties
+namespace ClientWPF.Properties
 {
 
 

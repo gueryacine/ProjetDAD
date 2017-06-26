@@ -70,7 +70,7 @@
   <ItemGroup>
     <Compile Include="Connection\Connector.cs" />
     <Compile Include="Connection\EncryptPass.cs" />
-    <Compile Include="Connection\UserToken.cs" />
+    <Compile Include="Connection\TokenGenerator.cs" />
     <Compile Include="IAuthenticationService.cs" />
     <Compile Include="Message\MSG.cs" />
     <Compile Include="AuthenticationService.svc.cs">
@@ -78,9 +78,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ClassDiagram1.cd" />
     <None Include="Web.Debug.config">

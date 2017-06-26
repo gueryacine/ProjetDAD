@@ -12,17 +12,3 @@ c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\o
 c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\View\MainWindow.g.cs
 c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\View\MainWindow.baml
 c:\users\cepes\documents\visual studio 2017\Projects\WpfFormLogin\WpfFormLogin\obj\Debug\WpfFormLogin.csprojResolveAssemblyReference.cache
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\bin\Debug\WpfFormLogin.exe.config
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\bin\Debug\WpfFormLogin.exe
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\bin\Debug\WpfFormLogin.pdb
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\View\MainWindow.g.cs
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\App.g.cs
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin_MarkupCompile.cache
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin_MarkupCompile.lref
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\View\MainWindow.baml
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.g.resources
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.Properties.Resources.resources
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.csproj.GenerateResource.Cache
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.exe
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.pdb
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.csprojResolveAssemblyReference.cache
