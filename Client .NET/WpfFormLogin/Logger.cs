@@ -23,7 +23,7 @@ namespace WpfFormLogin
         {
             if (email.Length == 0 || password.Length == 0 || !Regex.IsMatch(email, @"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"))
             {
-                return  "False";
+                return "False";
             }
             else
             {
@@ -32,25 +32,15 @@ namespace WpfFormLogin
                 string[] files = new string[] { "" };
                 Server_WCF_IIS.MSG msg = new Server_WCF_IIS.MSG();
 
-                    msg.Op_name = "LoginByToken";
-                    msg.TokenApp = AppToken;
-                    msg.TokenUser = ""; 
-                    msg = proxy.Dispatching(msg);
-
-                if(msg.Op_statut == true)
-                {
-                    msg.Op_name = "LoginByPassword";
-                    msg.TokenApp = AppToken;
-                    msg.TokenUser = "";
-                    msg.Password = password;
-                    msg.Email = email;
-
-                    // TODO add msg.Files
-                    msg = proxy.Dispatching(msg);
-                    return msg.Op_statut.ToString();
-                }
-
+                msg.Op_name = "LoginByToken";
+                msg.TokenApp = AppToken;
+                msg.TokenUser = "";
+                msg.Password = password;
+                msg.Email = email;
+                // TODO add msg.Files
+                msg = proxy.Dispatching(msg);
                 return msg.Op_statut.ToString();
+                
             }
         }
     }

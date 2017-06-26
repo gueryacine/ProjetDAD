@@ -25,3 +25,4 @@ C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.csproj.GenerateResource.Cache
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.exe
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.pdb
+C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.csprojResolveAssemblyReference.cache

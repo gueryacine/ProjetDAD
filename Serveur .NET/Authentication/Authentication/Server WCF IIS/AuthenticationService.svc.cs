@@ -18,20 +18,17 @@ namespace Server_WCF_IIS
         private string email;
         private string password;
 
-        public AuthenticationService() { msg = new MSG(); }
+        public AuthenticationService() { msg = new MSG();}
 
         public MSG Dispatching(MSG msg)
         {
             if (msg.Op_name == "LoginByToken")
             {
                 tokenApp = msg.TokenApp;
-                LoginByToken(tokenApp);
-            }
-            else if (msg.Op_name == "LoginByPassword")
-            {
                 email = msg.Email;
                 password = msg.Password;
-                LoginByPassword(email, password);
+                LoginByToken(tokenApp);
+                //MessageBox.Show(email, "email");
             }
             return this.msg;
         }
@@ -41,19 +38,21 @@ namespace Server_WCF_IIS
             {
                 msg.Op_infos = "Opération ok";
                 msg.Op_statut = true;
+                MessageBox.Show(msg.Op_statut.ToString(), "Token_Application");
+                LoginByPassword(email, password);
             }
             else
             {
                 msg.Op_infos = "Votre application n'est pas autorisée à communiquer avec nos serveurs.";
                 msg.Op_statut = false;
             }
-            MessageBox.Show(msg.Op_statut.ToString(), "Token_Application");
             return msg.Op_statut.ToString();
         }
         public string LoginByPassword(string username, string password)
         {
-
-            throw new NotImplementedException();//find user by username tchekc password
+            Connector.connect(username,password);
+            msg.Op_statut = true;
+            return msg.Op_statut.ToString();
         }
 
         public string LoadFiles(List<string> files)
