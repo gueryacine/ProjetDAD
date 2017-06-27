@@ -71,7 +71,11 @@
     <Compile Include="Connection\Connector.cs" />
     <Compile Include="Connection\EncryptPass.cs" />
     <Compile Include="Connection\TokenGenerator.cs" />
+    <Compile Include="Decrypt\Context.cs" />
     <Compile Include="IAuthenticationService.cs" />
+    <Compile Include="Decrypt\DicoTest.cs" />
+    <Compile Include="Decrypt\Strategy.cs" />
+    <Compile Include="Decrypt\KeyGenerator.cs" />
     <Compile Include="Message\MSG.cs" />
     <Compile Include="AuthenticationService.svc.cs">
       <DependentUpon>AuthenticationService.svc</DependentUpon>
@@ -80,7 +84,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

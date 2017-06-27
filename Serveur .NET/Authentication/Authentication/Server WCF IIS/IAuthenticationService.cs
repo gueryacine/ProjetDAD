@@ -18,7 +18,7 @@ namespace Server_WCF_IIS
         [OperationContract]
         MSG Dispatching(MSG msg);
         [OperationContract]
-        string LoadFiles(List<string> files);
+        string LoadFiles(byte[][] files);
 
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Server_WCF_IIS
 {
@@ -16,7 +17,7 @@ namespace Server_WCF_IIS
         [DataMember]
         public string TokenUser { get; set; }
         [DataMember]
-        public object[] data;
+        public byte[][] data { get; set; }
         [DataMember]
         public string Email { get; set; }
         [DataMember]

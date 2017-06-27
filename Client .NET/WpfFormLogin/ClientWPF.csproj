@@ -61,6 +61,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Model\File.cs" />
+    <Compile Include="Sender.cs" />
     <Compile Include="View\OpenFileDialogMultipleFilesSample.xaml.cs">
       <DependentUpon>OpenFileDialogMultipleFilesSample.xaml</DependentUpon>
     </Compile>

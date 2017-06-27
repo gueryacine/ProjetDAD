@@ -17,8 +17,6 @@ namespace WpfFormLogin.AuthenticationReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MSG", Namespace="http://schemas.datacontract.org/2004/07/Server_WCF_IIS")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(object[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(string[]))]
     public partial struct MSG : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -46,7 +44,7 @@ namespace WpfFormLogin.AuthenticationReference {
         private string TokenUserField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private object[] dataField;
+        private byte[][] dataField;
         
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -149,7 +147,7 @@ namespace WpfFormLogin.AuthenticationReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public object[] data {
+        public byte[][] data {
             get {
                 return this.dataField;
             }

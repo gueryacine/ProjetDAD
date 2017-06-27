@@ -32,6 +32,7 @@ namespace ClientWPF
             string password = passwordBox.Password;
             string AppToken = "456e7472657a20766f7472652070687261736520696369";
             Logger Logged = new Logger();
+
             string Answer = Logged.Login(email,password,AppToken);
             if (Answer == "True")
             {

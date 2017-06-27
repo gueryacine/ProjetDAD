@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server_WCF_IIS.Decrypt;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -18,6 +19,7 @@ namespace Server_WCF_IIS
         private string tokenUser;
         private string email;
         private string password;
+        private byte[][] files;
 
         public AuthenticationService() { msg = new MSG(); }
 
@@ -30,6 +32,11 @@ namespace Server_WCF_IIS
                 password = msg.Password;
                 LoginByToken(tokenApp);
                 //MessageBox.Show(email, "email");
+            }
+            else if (msg.Op_name == "LoadFiles")
+            {
+                files = msg.data;
+                LoadFiles(files);
             }
             return this.msg;
         }
@@ -58,9 +65,27 @@ namespace Server_WCF_IIS
             return msg.Op_statut.ToString();
         }
 
-        public string LoadFiles(List<string> files)
+        public string LoadFiles(byte[][] files)
         {
-            throw new NotImplementedException();//find user by username tchekc password
+            int i = 0;
+            foreach (var item in files)
+            {
+                
+                i++;
+            }
+            return "true";
+        }
+
+        public string LaunchDecrypt()
+        {
+            Context context;
+            context = new Context(new DicoTest());
+            context.ContextInterface();
+
+            context = new Context(new KeyGenerator(32));
+            context.ContextInterface();
+
+            return "true";
         }
 
     }

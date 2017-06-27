@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Select Files" Height="300" Width="300">
-    <DockPanel Margin="10">
+    <DockPanel Margin="10,0,10,10" Height="249" VerticalAlignment="Bottom">
         <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10">
-            <Button Name="btnOpenFile" Click="BtnOpenFiles_Click">Open files</Button>
+            <Button x:Name="btnOpenFile" Click="BtnOpenFiles_Click" Content="Open files"/>
+            <Button x:Name="SEND" Click="Send_Click" Content="Send Files"/>
         </WrapPanel>
         <ListBox Name="lbFiles" />
     </DockPanel>
