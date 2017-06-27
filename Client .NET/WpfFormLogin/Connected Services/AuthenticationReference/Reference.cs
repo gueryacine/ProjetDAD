@@ -176,16 +176,16 @@ namespace WpfFormLogin.AuthenticationReference {
     public interface IAuthenticationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoginByPassword", ReplyAction="http://tempuri.org/IAuthenticationService/LoginByPasswordResponse")]
-        WpfFormLogin.AuthenticationReference.MSG LoginByPassword(string username, string password);
+        string LoginByPassword(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoginByPassword", ReplyAction="http://tempuri.org/IAuthenticationService/LoginByPasswordResponse")]
-        System.Threading.Tasks.Task<WpfFormLogin.AuthenticationReference.MSG> LoginByPasswordAsync(string username, string password);
+        System.Threading.Tasks.Task<string> LoginByPasswordAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoginByToken", ReplyAction="http://tempuri.org/IAuthenticationService/LoginByTokenResponse")]
-        WpfFormLogin.AuthenticationReference.MSG LoginByToken(string tokenApp);
+        string LoginByToken(string tokenApp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoginByToken", ReplyAction="http://tempuri.org/IAuthenticationService/LoginByTokenResponse")]
-        System.Threading.Tasks.Task<WpfFormLogin.AuthenticationReference.MSG> LoginByTokenAsync(string tokenApp);
+        System.Threading.Tasks.Task<string> LoginByTokenAsync(string tokenApp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Dispatching", ReplyAction="http://tempuri.org/IAuthenticationService/DispatchingResponse")]
         WpfFormLogin.AuthenticationReference.MSG Dispatching(WpfFormLogin.AuthenticationReference.MSG msg);
@@ -227,19 +227,19 @@ namespace WpfFormLogin.AuthenticationReference {
                 base(binding, remoteAddress) {
         }
         
-        public WpfFormLogin.AuthenticationReference.MSG LoginByPassword(string username, string password) {
+        public string LoginByPassword(string username, string password) {
             return base.Channel.LoginByPassword(username, password);
         }
         
-        public System.Threading.Tasks.Task<WpfFormLogin.AuthenticationReference.MSG> LoginByPasswordAsync(string username, string password) {
+        public System.Threading.Tasks.Task<string> LoginByPasswordAsync(string username, string password) {
             return base.Channel.LoginByPasswordAsync(username, password);
         }
         
-        public WpfFormLogin.AuthenticationReference.MSG LoginByToken(string tokenApp) {
+        public string LoginByToken(string tokenApp) {
             return base.Channel.LoginByToken(tokenApp);
         }
         
-        public System.Threading.Tasks.Task<WpfFormLogin.AuthenticationReference.MSG> LoginByTokenAsync(string tokenApp) {
+        public System.Threading.Tasks.Task<string> LoginByTokenAsync(string tokenApp) {
             return base.Channel.LoginByTokenAsync(tokenApp);
         }
         

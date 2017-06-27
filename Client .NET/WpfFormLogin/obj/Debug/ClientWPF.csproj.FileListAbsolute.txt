@@ -1,7 +1,9 @@
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\bin\Debug\WpfFormLogin.exe.config
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\bin\Debug\WpfFormLogin.exe
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\bin\Debug\WpfFormLogin.pdb
+C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\View\OpenFileDialogMultipleFilesSample.baml
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\View\MainWindow.g.cs
+C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\View\OpenFileDialogMultipleFilesSample.g.cs
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\App.g.cs
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin_MarkupCompile.cache
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin_MarkupCompile.lref
@@ -11,4 +13,3 @@ C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\ClientWPF.csproj.GenerateResource.Cache
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.exe
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\WpfFormLogin.pdb
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\ClientWPF.csprojResolveAssemblyReference.cache

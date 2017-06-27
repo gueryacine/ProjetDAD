@@ -9,4 +9,3 @@ C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\bin\MySql.Web.xml
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\obj\Debug\Server WCF IIS.dll
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\obj\Debug\Server WCF IIS.pdb
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\obj\Debug\Server WCF IIS.csprojResolveAssemblyReference.cache

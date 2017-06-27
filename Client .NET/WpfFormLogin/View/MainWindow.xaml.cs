@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFormLogin.View;
 
 namespace ClientWPF
 {
@@ -35,6 +36,9 @@ namespace ClientWPF
             if (Answer == "True")
             {
                 errorMessage.Text = Answer;
+                //this.Hide();
+                OpenFileDialogMultipleFilesSample file = new OpenFileDialogMultipleFilesSample();
+                file.Show();
             }
             else
             {

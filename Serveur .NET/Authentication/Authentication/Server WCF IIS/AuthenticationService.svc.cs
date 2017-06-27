@@ -15,10 +15,11 @@ namespace Server_WCF_IIS
     {
         private MSG msg;
         private string tokenApp;
+        private string tokenUser;
         private string email;
         private string password;
 
-        public AuthenticationService() { msg = new MSG();}
+        public AuthenticationService() { msg = new MSG(); }
 
         public MSG Dispatching(MSG msg)
         {
@@ -37,9 +38,9 @@ namespace Server_WCF_IIS
             if (tokenApp == "456e7472657a20766f7472652070687261736520696369")
             {
                 msg.Op_infos = "Opération ok";
+                msg.Op_statut = true;
                 MessageBox.Show(msg.Op_statut.ToString(), "Token_Application");
                 LoginByPassword(email, password);
-               // msg.Op_statut = res;
             }
             else
             {
@@ -51,7 +52,8 @@ namespace Server_WCF_IIS
         public string LoginByPassword(string username, string password)
         {
             Connector connector = new Connector();
-            connector.Connect(username,password);
+            tokenUser = connector.Connect(username, password);
+            MessageBox.Show(tokenUser, "TokenUser_return");
             msg.Op_statut = true;
             return msg.Op_statut.ToString();
         }

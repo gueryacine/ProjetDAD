@@ -16,27 +16,25 @@ namespace Server_WCF_IIS
     {
         private MySqlConnection connection;
         private MySqlDataReader reader;
-        private string TokenUser_confirmation; 
+        private string tokenUser;
         private string server;
         private string database;
         private string uid;
         private string mdp;
 
-        public void Connect(string username, string password)
+        public Connector()
         {
-            string server;
-            string database;
-            string uid;
-            string mdp;
-            server = "localhost";
-            database = "dad_db";
-            uid = "basic_user"; //replace with user from wpf
-            mdp = "Exia2017"; // replace with password from wpf
-            string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + mdp + ";";
+            InitConnexion();
+        }
 
+        private void InitConnexion()
+        {
+            string connectionString = "SERVER=127.0.0.1; DATABASE=dad_db; UID=root; PASSWORD=";
             connection = new MySqlConnection(connectionString);
+        }
+        //connect to db
+        public string Connect(string username, string password)
+        {
             try
             {
                 connection.Open();
@@ -44,17 +42,23 @@ namespace Server_WCF_IIS
                 bool CKU = Check_User(username, password);
                 if (CKU == true)
                 {
-                    TokenUser_confirmation=IsTokenOk(username);
+                    tokenUser = SelectToken(username);
+                    if (tokenUser == "0")
+                    {
+                        tokenUser = BuildToken(username);
+                        UpdateToken(tokenUser, username);
+                    }
+                   // MessageBox.Show(tokenUser, "TOKENUSER");
                 }
-                MessageBox.Show(TokenUser_confirmation, "Token User Value");
             }
             catch (MySqlException co)
             {
                 MessageBox.Show(co.ToString());
                 MessageBox.Show("Non Connecté");
             }
+            return tokenUser;
         }
-
+        //check username+pâssword
         private bool Check_User(string username, string password)
         {
             bool credentials = false;
@@ -73,64 +77,66 @@ namespace Server_WCF_IIS
                         {
                             MessageBox.Show("Login OK", " Welcome to the WHITE HAT organisation");
                             credentials = true;
+                            reader.Close();
                         }
                         else
                         {
+                            reader.Close();
                             MessageBox.Show("Login Error", "Incorrect password.");
                         }
                     }
                     else
                     {
+                        reader.Close();
                         MessageBox.Show("Login Error", "User not found");
                     }
                 }
-                reader.Close();
+                return credentials;
             }
-            return credentials;
         }
-
-        public string IsTokenOk(string username)
+        //Check TokenUser
+        public string SelectToken(string username)
         {
-            string CreateToken=null;
-            string select = "SELECT * FROM User " + "WHERE EmailUser = \'" + username + "\'";
-            MySqlCommand cmd = new MySqlCommand(select, connection);
+            string token = null;
+            string selectToken = "SELECT UserToken FROM User " + "WHERE EmailUser = \'" + username + "\'";
+            MySqlCommand cmd = new MySqlCommand(selectToken, connection);
             using (reader = cmd.ExecuteReader())
             {
-                if (reader.Read())
+                if (reader.HasRows)
                 {
-                    string token = reader.GetString(3);
-                    if (token == null)
+                    if (reader.Read())
                     {
-                        int length = 100;
-                        CreateToken = TokenGenerator.Instance.BuildSecureToken(length);
-                        Update(CreateToken, username);
-                        MessageBox.Show("Generation", "BUILD TOKEN");
-                    }
-                    else
-                    {
-                        CreateToken = SelectToken(username);
-                        MessageBox.Show("OK", "Token_User");
+                        if (reader.IsDBNull(0))
+                        {
+                            token = "0";
+                        }
+                        else
+                        {
+                            token = reader.GetString(0);
+                        }
                     }
                 }
             }
             reader.Close();
-            return CreateToken;
+            return token;
         }
-
-        //Update statement
-        public void Update(string token, string username)
+        //Build TokenUser
+        public string BuildToken(string username)
+        {
+            string token = null;
+            int length = 20;
+            token = TokenGenerator.Instance.BuildSecureToken(length);
+            MessageBox.Show(token, "BUILD TOKEN");
+            return token;
+        }
+        //Update TokenUser
+        public void UpdateToken(string token, string username)
         {
             string updateToken = "UPDATE User " + "SET UserToken = \'" + token + "\'" + "WHERE EmailUser = \'" + username + "\'"; ;
             MySqlCommand cmd = new MySqlCommand(updateToken, connection);
+            cmd.ExecuteNonQuery();
         }
-        //Select Token
-        public string SelectToken(string username)
-        {
-            string selectToken = "SELECT UserToken FROM User " + "WHERE EmailUser = \'" + username + "\'";
-            MySqlCommand cmd = new MySqlCommand(selectToken, connection);
-            return selectToken;
-        }
-        //Close connection
+
         private bool CloseConnection()
         {
             try
