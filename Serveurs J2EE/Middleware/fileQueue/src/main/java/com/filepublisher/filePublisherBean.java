@@ -24,7 +24,8 @@ public class filePublisherBean implements Serializable {
 
 
   public filePublisherBean()
-  {}
+  {
+  }
   
   @Inject
   private JMSContext context;
