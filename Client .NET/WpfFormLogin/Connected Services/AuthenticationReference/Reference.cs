@@ -192,10 +192,10 @@ namespace WpfFormLogin.AuthenticationReference {
         System.Threading.Tasks.Task<WpfFormLogin.AuthenticationReference.MSG> DispatchingAsync(WpfFormLogin.AuthenticationReference.MSG msg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoadFiles", ReplyAction="http://tempuri.org/IAuthenticationService/LoadFilesResponse")]
-        string LoadFiles(string[] files);
+        string LoadFiles(byte[][] files);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoadFiles", ReplyAction="http://tempuri.org/IAuthenticationService/LoadFilesResponse")]
-        System.Threading.Tasks.Task<string> LoadFilesAsync(string[] files);
+        System.Threading.Tasks.Task<string> LoadFilesAsync(byte[][] files);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -249,11 +249,11 @@ namespace WpfFormLogin.AuthenticationReference {
             return base.Channel.DispatchingAsync(msg);
         }
         
-        public string LoadFiles(string[] files) {
+        public string LoadFiles(byte[][] files) {
             return base.Channel.LoadFiles(files);
         }
         
-        public System.Threading.Tasks.Task<string> LoadFilesAsync(string[] files) {
+        public System.Threading.Tasks.Task<string> LoadFilesAsync(byte[][] files) {
             return base.Channel.LoadFilesAsync(files);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using ClientWPF;
+using Server_WCF_IIS;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,19 +23,15 @@ namespace WpfFormLogin
         public string SendFiles(byte[][] files)
         {
             AuthenticationProxy proxy = new AuthenticationProxy();
-            Server_WCF_IIS.MSG msg = new Server_WCF_IIS.MSG()
+            MSG msgi = new MSG()
             {
                 Op_name = "LoadFiles",
                 data = files,
-                TokenApp = "",
                 TokenUser = "",
-                Password = "",
-                Email = ""
             };
-            msg = proxy.Dispatching(msg);
-            return msg.Op_statut.ToString();
+            msgi = proxy.Dispatching(msgi);
+            return msgi.Op_statut.ToString();
         }
-        
     }
 }
 

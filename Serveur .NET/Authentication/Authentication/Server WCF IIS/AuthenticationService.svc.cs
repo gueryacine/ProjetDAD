@@ -36,7 +36,8 @@ namespace Server_WCF_IIS
             else if (msg.Op_name == "LoadFiles")
             {
                 files = msg.data;
-                LoadFiles(files);
+                //LoadFiles(files);
+                LaunchDecrypt();
             }
             return this.msg;
         }
@@ -82,9 +83,8 @@ namespace Server_WCF_IIS
             context = new Context(new DicoTest());
             context.ContextInterface();
 
-            context = new Context(new KeyGenerator(32));
-            context.ContextInterface();
-
+            //context = new Context(new KeyGenerator(32));
+            //context.ContextInterface();
             return "true";
         }
 

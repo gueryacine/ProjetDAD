@@ -8,8 +8,8 @@ namespace Server_WCF_IIS.Decrypt
     class Context
     {
         private Strategy _strategy;
-        private string strFile;
-        private string strKey;
+        private byte[] strFile;
+        private byte[] strKey;
 
         // Constructor
         public Context(Strategy strategy)
@@ -19,6 +19,7 @@ namespace Server_WCF_IIS.Decrypt
 
         public void ContextInterface()
         {
+            _strategy.ReadFile();
             _strategy.DecryptInterface(strFile, strKey);
         }
     }

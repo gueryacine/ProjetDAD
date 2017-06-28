@@ -48,7 +48,7 @@
   <xs:element name="LoadFiles">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="files" nillable="true" type="q3:ArrayOfstring" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="files" nillable="true" type="q3:ArrayOfbase64Binary" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

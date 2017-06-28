@@ -94,14 +94,18 @@ namespace Server_WCF_IIS.Decrypt
             return tab;
         }
 
-        public override bool DecryptInterface(byte[] file, byte[] strKey)
+        public override bool DecryptInterface(byte[] sbOut, byte[] strKey)
         {
-            string sbOut = String.Empty;
-            for (int i = 0; i < file.Length; i += strKey.Length)
+            for (int i = 0; i < sbOut.Length; i += strKey.Length)
             {
-                sbOut += (char)(code ^ strKey[(i / 2) % strKey.Length]);
+                sbOut[i] ^= strKey[i];
             }
             return true;
+        }
+
+        public override void ReadFile()
+        {
+            throw new NotImplementedException();
         }
     }
 }
