@@ -36,8 +36,7 @@ namespace Server_WCF_IIS
             else if (msg.Op_name == "LoadFiles")
             {
                 files = msg.data;
-                //LoadFiles(files);
-                LaunchDecrypt();
+                LaunchDecrypt(files);
             }
             return this.msg;
         }
@@ -66,21 +65,10 @@ namespace Server_WCF_IIS
             return msg.Op_statut.ToString();
         }
 
-        public string LoadFiles(byte[][] files)
-        {
-            int i = 0;
-            foreach (var item in files)
-            {
-                
-                i++;
-            }
-            return "true";
-        }
-
-        public string LaunchDecrypt()
+        public string LaunchDecrypt(byte[][] files)
         {
             Context context;
-            context = new Context(new DicoTest());
+            context = new Context(new DicoTest(files));
             context.ContextInterface();
 
             //context = new Context(new KeyGenerator(32));

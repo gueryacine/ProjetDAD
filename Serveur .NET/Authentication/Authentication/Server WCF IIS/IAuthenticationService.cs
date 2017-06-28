@@ -17,8 +17,6 @@ namespace Server_WCF_IIS
         string LoginByToken(string tokenApp);
         [OperationContract]
         MSG Dispatching(MSG msg);
-        [OperationContract]
-        string LoadFiles(byte[][] files);
 
     }
 

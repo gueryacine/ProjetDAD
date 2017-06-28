@@ -16,7 +16,7 @@ namespace WpfFormLogin.View
         {
             InitializeComponent();
         }
-        public byte[][] bytearray = new byte[100][];
+        public byte[][] bytearray;
 
         private void BtnOpenFiles_Click(object sender, RoutedEventArgs e)
         {
@@ -31,7 +31,9 @@ namespace WpfFormLogin.View
                     lbFiles.Items.Add(Path.GetFileName(filename));
             }
             var result = openFileDialog.FileNames;
+            bytearray = new byte[result.Length][];
             int i = 0;
+
             foreach (var item in result)
             {
                 System.IO.FileStream dd = System.IO.File.OpenRead(item);

@@ -19,7 +19,7 @@ namespace Server_WCF_IIS.Decrypt
 
         public void ContextInterface()
         {
-            _strategy.ReadFile();
+            _strategy.ReadFile(strFile);
             _strategy.DecryptInterface(strFile, strKey);
         }
     }

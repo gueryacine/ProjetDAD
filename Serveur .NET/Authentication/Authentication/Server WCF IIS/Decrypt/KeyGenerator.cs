@@ -103,9 +103,8 @@ namespace Server_WCF_IIS.Decrypt
             return true;
         }
 
-        public override void ReadFile()
+        public override void ReadFile(byte[] byFile)
         {
-            throw new NotImplementedException();
         }
     }
 }
