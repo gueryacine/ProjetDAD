@@ -8,6 +8,7 @@ package com.traitement.bean;
 
 
 
+import com.dao.model.Dechiffrage;
 import com.dao.model.Dico;
 import java.io.Serializable;
 import java.util.List;
@@ -20,13 +21,14 @@ import javax.persistence.EntityManager;
  */
 public class DicoVerification extends ATraitementClass<Float> implements Serializable{
     
-   // @PersistenceContext(unitName = "traitementProject_persistance")
+   //@PersistenceContext(unitName = "traitementProject_persistance")
     
     private EntityManager entityManager;
     private String QueryName = "Dico.findByMot";
     private String ColonneName = "mot";
     private String WordFoundConcatenated = "";
-    
+    public int IdDechiffrage;
+    private double Tauxdecorrespendence = 1;
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -61,9 +63,10 @@ public class DicoVerification extends ATraitementClass<Float> implements Seriali
         }
         if (conteur > 0)
         {
-            addWordInDB();
+            ModifyInBdd();
         }
-        return ((conteur *100)/countpart);
+        Tauxdecorrespendence = ((conteur *100)/countpart);
+        return Tauxdecorrespendence;
     }
     
     Boolean compareWordwithDico(String mot)
@@ -83,9 +86,20 @@ public class DicoVerification extends ATraitementClass<Float> implements Seriali
         return false;
         }
     }
-    void addWordInDB()
+    void ModifyInBdd()
     {
-        System.out.println(WordFoundConcatenated);
+
+         /*  Dechiffrage dechi = entityManager.find(Dechiffrage.class, IdDechiffrage);
+           
+           entityManager.getTransaction().begin();
+           dechi.setTauxDeReussite(Tauxdecorrespendence);
+           if(WordFoundConcatenated != "")
+           {
+                dechi.setFristswordfound(WordFoundConcatenated);
+           }
+           entityManager.getTransaction().commit();*/
+
+        
+        System.out.println("reponse word add  " + WordFoundConcatenated);
     }
-    
 }

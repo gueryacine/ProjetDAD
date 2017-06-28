@@ -36,7 +36,7 @@ public class EnityManagerController {
         this.em = em;
     }
     public EnityManagerController() {
-        emf = Persistence.createEntityManagerFactory("com_wordTraitementProject_ejb_1.0-SNAPSHOTPU2");
+        emf = Persistence.createEntityManagerFactory("newPU");
         em = emf.createEntityManager();
         
     }
