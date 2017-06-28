@@ -6,6 +6,8 @@ COPY fileQueue.war /
 COPY start.sh /
 COPY password.file /
 COPY passwordChange.file /
+
+EXPOSE 22
 EXPOSE 8080
 
 ENTRYPOINT ["/start.sh"]

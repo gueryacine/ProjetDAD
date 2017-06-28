@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author gueryacine
  */
-public class EnityManagerController {
+public class EntityManagerController {
 //    @PersistenceContext("com_wordTraitementProject_ejb_1.0-SNAPSHOTPU")
     private EntityManagerFactory emf;
      
@@ -35,7 +35,7 @@ public class EnityManagerController {
     public void setEm(EntityManager em) {
         this.em = em;
     }
-    public EnityManagerController() {
+    public EntityManagerController() {
         emf = Persistence.createEntityManagerFactory("com_wordTraitementProject_ejb_1.0-SNAPSHOTPU2");
         em = emf.createEntityManager();
         

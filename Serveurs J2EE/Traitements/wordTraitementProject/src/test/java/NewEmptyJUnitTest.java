@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import com.main.NewMain;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,8 +42,8 @@ public class NewEmptyJUnitTest {
     @Test
     public void hello() {
     
-        NewMain nm = new NewMain();
-        nm.main();
+        //NewMain nm = new NewMain();
+        //nm.main();
     
     }
 }

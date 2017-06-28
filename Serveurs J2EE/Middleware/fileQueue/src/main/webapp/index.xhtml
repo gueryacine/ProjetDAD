@@ -9,9 +9,13 @@
     <h:body>
         <!-- vue permettant de créer une catégorie -->
          <h:form>
-            <h:panelGrid columns="2">
-            Message
-            <h:inputText  value="#{filePublisherBean.message}"/>
+            <h:panelGrid columns="3">
+            File Name
+            <h:inputText  value="#{filePublisherBean.fileName}"/>
+            Key Value
+            <h:inputText  value="#{filePublisherBean.keyValue}"/>
+            Decrypted Text
+            <h:inputText  value="#{filePublisherBean.decryptedText}"/>
             <h:commandButton value="Send" actionListener="#{filePublisherBean.addMessageToQueue}"/>
             </h:panelGrid>
         </h:form>
