@@ -19,6 +19,7 @@ namespace Server_WCF_IIS
         private string tokenUser;
         private string email;
         private string password;
+        private string[] filename;
         private byte[][] files;
 
         public AuthenticationService() { msg = new MSG(); }
@@ -36,7 +37,9 @@ namespace Server_WCF_IIS
             else if (msg.Op_name == "LoadFiles")
             {
                 files = msg.data;
-                LaunchDecrypt(files);
+                email = msg.Email;
+                filename = msg.FileName;
+                LaunchDecrypt(files,filename,email);
             }
             return this.msg;
         }
@@ -65,14 +68,14 @@ namespace Server_WCF_IIS
             return msg.Op_statut.ToString();
         }
 
-        public string LaunchDecrypt(byte[][] files)
+        public string LaunchDecrypt(byte[][] files, string[] namefile, string username)
         {
             Context context;
-            context = new Context(new DicoTest(files));
-            context.ContextInterface();
-
-            //context = new Context(new KeyGenerator(32));
+            //context = new Context(new DicoTest(files, namefile, username));
             //context.ContextInterface();
+
+            context = new Context(new KeygenTest(files, namefile, username));
+            context.ContextInterface();
             return "true";
         }
 

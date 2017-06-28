@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace Server_WCF_IIS.Decrypt
 {
-    class KeyGenerator : Strategy
+    class KeyGenerator 
     {
         private char[] tabAscii =
             {
@@ -92,19 +93,6 @@ namespace Server_WCF_IIS.Decrypt
 
             tab[i] = compteur % tabAscii.Length;
             return tab;
-        }
-
-        public override bool DecryptInterface(byte[] sbOut, byte[] strKey)
-        {
-            for (int i = 0; i < sbOut.Length; i += strKey.Length)
-            {
-                sbOut[i] ^= strKey[i];
-            }
-            return true;
-        }
-
-        public override void ReadFile(byte[] byFile)
-        {
         }
     }
 }

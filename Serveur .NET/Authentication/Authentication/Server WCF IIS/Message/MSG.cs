@@ -22,5 +22,7 @@ namespace Server_WCF_IIS
         public string Email { get; set; }
         [DataMember]
         public string Password { get; set; }
+        [DataMember]
+        public string[] FileName { get; set; }
     }
 }

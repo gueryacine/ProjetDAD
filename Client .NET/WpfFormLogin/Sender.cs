@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WpfFormLogin
@@ -20,15 +21,17 @@ namespace WpfFormLogin
                 _instance = new Sender();
             return _instance;
         }
-        public string SendFiles(byte[][] files)
+        public string SendFiles(byte[][] files, string[] filename)
         {
             AuthenticationProxy proxy = new AuthenticationProxy();
             MSG msgi = new MSG()
             {
                 Op_name = "LoadFiles",
+                FileName = filename,
                 data = files,
                 TokenUser = "",
             };
+            MessageBox.Show(msgi.Op_infos);
             msgi = proxy.Dispatching(msgi);
             return msgi.Op_statut.ToString();
         }

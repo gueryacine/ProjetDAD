@@ -17,6 +17,7 @@ namespace WpfFormLogin.View
             InitializeComponent();
         }
         public byte[][] bytearray;
+        public List<string> fileName = new List<string>();
 
         private void BtnOpenFiles_Click(object sender, RoutedEventArgs e)
         {
@@ -28,12 +29,15 @@ namespace WpfFormLogin.View
             if (openFileDialog.ShowDialog() == true)
             {
                 foreach (string filename in openFileDialog.FileNames)
+                {
                     lbFiles.Items.Add(Path.GetFileName(filename));
+                    fileName.Add(Path.GetFileName(filename));
+                }
             }
             var result = openFileDialog.FileNames;
             bytearray = new byte[result.Length][];
-            int i = 0;
 
+            int i = 0;
             foreach (var item in result)
             {
                 System.IO.FileStream dd = System.IO.File.OpenRead(item);
@@ -49,7 +53,7 @@ namespace WpfFormLogin.View
             if (lbFiles.Items.Count > 0)
             {
                 Sender sended = new Sender();
-                string Answer = sended.SendFiles(bytearray);
+                string Answer = sended.SendFiles(bytearray, fileName.ToArray());
             }
         }
     }

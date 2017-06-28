@@ -12,7 +12,6 @@ namespace Server_WCF_IIS
 {
     using System.Runtime.Serialization;
 
-
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name = "MSG", Namespace = "http://schemas.datacontract.org/2004/07/Server_WCF_IIS")]
@@ -22,6 +21,8 @@ namespace Server_WCF_IIS
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
 
         private string EmailField;
+
+        private string[] FileNameField;
 
         private string Op_infosField;
 
@@ -59,6 +60,19 @@ namespace Server_WCF_IIS
             set
             {
                 this.EmailField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] FileName
+        {
+            get
+            {
+                return this.FileNameField;
+            }
+            set
+            {
+                this.FileNameField = value;
             }
         }
 
@@ -178,12 +192,6 @@ public interface IAuthenticationService
 
     [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticationService/Dispatching", ReplyAction = "http://tempuri.org/IAuthenticationService/DispatchingResponse")]
     System.Threading.Tasks.Task<Server_WCF_IIS.MSG> DispatchingAsync(Server_WCF_IIS.MSG msg);
-
-    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticationService/LoadFiles", ReplyAction = "http://tempuri.org/IAuthenticationService/LoadFilesResponse")]
-    string LoadFiles(byte[][] files);
-
-    [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticationService/LoadFiles", ReplyAction = "http://tempuri.org/IAuthenticationService/LoadFilesResponse")]
-    System.Threading.Tasks.Task<string> LoadFilesAsync(byte[][] files);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -248,15 +256,5 @@ public partial class AuthenticationProxy : System.ServiceModel.ClientBase<IAuthe
     public System.Threading.Tasks.Task<Server_WCF_IIS.MSG> DispatchingAsync(Server_WCF_IIS.MSG msg)
     {
         return base.Channel.DispatchingAsync(msg);
-    }
-
-    public string LoadFiles(byte[][] files)
-    {
-        return base.Channel.LoadFiles(files);
-    }
-
-    public System.Threading.Tasks.Task<string> LoadFilesAsync(byte[][] files)
-    {
-        return base.Channel.LoadFilesAsync(files);
     }
 }

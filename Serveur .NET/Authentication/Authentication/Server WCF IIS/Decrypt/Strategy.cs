@@ -8,7 +8,7 @@ namespace Server_WCF_IIS.Decrypt
 {
     abstract class Strategy
     {
-        public abstract bool DecryptInterface(byte[] byFile, byte[] strKey);
+        public abstract string DecryptInterface(byte[] byFile, byte[] strKey);
         public abstract void ReadFile(byte[] byFile);
     }
 }
