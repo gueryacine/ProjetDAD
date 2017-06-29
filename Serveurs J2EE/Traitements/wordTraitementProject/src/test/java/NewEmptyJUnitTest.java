@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+import com.dao.model.Dico;
+import com.dao.model.EntityManagerController;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,8 +45,9 @@ public class NewEmptyJUnitTest {
     @Test
     public void hello() {
     
-        //NewMain nm = new NewMain();
-        //nm.main();
-    
+        EntityManagerController em = new EntityManagerController();
+        em.getEm().getTransaction().begin();
+        List<Dico> d1 = em.getEm().createNamedQuery("Dico.findAll").getResultList();
+        em.getEm().getTransaction().commit();
     }
 }
