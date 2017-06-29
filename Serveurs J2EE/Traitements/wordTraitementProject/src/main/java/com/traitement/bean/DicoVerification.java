@@ -66,6 +66,7 @@ public class DicoVerification extends ATraitementClass<Float> implements Seriali
               
             }
         }
+        Tauxdecorrespendence = (conteur*100)/countpart;
         return Tauxdecorrespendence;
     }
     

@@ -19,8 +19,8 @@ public class SoapTraitement {
     }
     
     public char binnarytochar(String txt){
-        int parseInt = Integer.parseInt(txt, 2);
-        return (char)parseInt;
+        Long parseInt = Long.parseLong(txt, 2);
+        return (char)parseInt.intValue();
     }
     
     private String[] splitByNumber(String str, int size) {
