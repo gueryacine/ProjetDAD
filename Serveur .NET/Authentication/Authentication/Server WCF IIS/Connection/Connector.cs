@@ -29,7 +29,7 @@ namespace Server_WCF_IIS
 
         private void InitConnexion()
         {
-            string connectionString = "SERVER=127.0.0.1; DATABASE=dad_db; UID=root; PASSWORD=";
+            string connectionString = "SERVER=192.168.99.100; DATABASE=dad_db; UID=root; PASSWORD=root";
             connection = new MySqlConnection(connectionString);
         }
         //connect to db
@@ -38,7 +38,7 @@ namespace Server_WCF_IIS
             try
             {
                 connection.Open();
-                //MessageBox.Show("Connection Open");
+                MessageBox.Show("Connection Open");
                 bool CKU = Check_User(username, password);
                 if (CKU == true)
                 {
@@ -48,13 +48,13 @@ namespace Server_WCF_IIS
                         tokenUser = BuildToken(username);
                         UpdateToken(tokenUser, username);
                     }
-                   // MessageBox.Show(tokenUser, "TOKENUSER");
+                    MessageBox.Show(tokenUser, "TOKENUSER");
                 }
             }
             catch (MySqlException co)
             {
-                //MessageBox.Show(co.ToString());
-                //MessageBox.Show("Non Connecté");
+                MessageBox.Show(co.ToString());
+                MessageBox.Show("Non Connecté");
             }
             return tokenUser;
         }
@@ -75,20 +75,20 @@ namespace Server_WCF_IIS
                         string pass = Connection.EncryptPass.EncryptSHA512Managed(password);
                         if (hash_db == pass)
                         {
-                            //MessageBox.Show("Login OK", " Welcome to the WHITE HAT organisation");
+                            MessageBox.Show("Login OK", " Welcome to the WHITE HAT organisation");
                             credentials = true;
                             reader.Close();
                         }
                         else
                         {
                             reader.Close();
-                            //MessageBox.Show("Login Error", "Incorrect password.");
+                            MessageBox.Show("Login Error", "Incorrect password.");
                         }
                     }
                     else
                     {
                         reader.Close();
-                        //MessageBox.Show("Login Error", "User not found");
+                        MessageBox.Show("Login Error", "User not found");
                     }
                 }
                 return credentials;

@@ -12,7 +12,7 @@ namespace Server_WCF_IIS.ServiceJava
     {
         private WebReferenceJEE.SoapService service;
         private static WebServiceJava instance;
-        string key {get;set;}
+        string key { get; set; }
         string email { get; set; }
         bool result { get; set; }
 

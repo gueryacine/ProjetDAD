@@ -52,12 +52,12 @@ namespace Server_WCF_IIS.Decrypt
                     if (res.FindEmail == true)
                     {
                         decrypt = true;
-                        // MessageBox.Show(res.ToString(), "fichier décripté");
+                        // MessageBox.Show(res.ToString(), "fichier décrypté");
                     }
                     else if (res.FindEmail == false)
                     {
                         decrypt = true;
-                        // MessageBox.Show(res.ToString(), "fichier Non décripté");
+                        // MessageBox.Show(res.ToString(), "fichier Non décrypté");
                     }
                     i++;
                 }
