@@ -37,7 +37,9 @@ public class SoapService {
      */
     @WebMethod(operationName = "SendFileForControl")
 
-    public int sendFileForTraitement(@WebParam(name = "nameFile") String txt,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText)throws JMSException{
+    public boolean sendFileForTraitement(@WebParam(name = "nameFile") String txt,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText)throws JMSException{
+        try
+        {
         SoapTraitement straitement = new SoapTraitement();
         DecrypteText=  straitement.TransformationFonction(DecrypteText);
 
@@ -48,7 +50,12 @@ public class SoapService {
         
         context.createProducer().send(queue, txt);
         //return queuePublicher.getMessage();
-        return 52;
+        return true;
+        } catch(Exception e)
+        {
+        return false;
+        }
+        
     }
     
         @WebMethod(operationName = "SendResponseTraitement")
