@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFormLogin.View;
 
-namespace WpfFormLogin
+namespace ClientWPF
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
@@ -31,14 +32,19 @@ namespace WpfFormLogin
             string password = passwordBox.Password;
             string AppToken = "456e7472657a20766f7472652070687261736520696369";
             Logger Logged = new Logger();
+
             string Answer = Logged.Login(email,password,AppToken);
-            if (Answer == "Logged")
+            if (Answer == "True")
             {
-                errorMessage.Text = "Logged";
+                errorMessage.Text = "Connection to server OK";
+                errorMessage.Text = Answer;
+                this.Hide();
+                OpenFileDialogMultipleFilesSample file = new OpenFileDialogMultipleFilesSample();
+                file.Show();
             }
             else
             {
-                errorMessage.Text = Answer;
+                errorMessage.Text = "Error on email or password";
             }
         }
     }
