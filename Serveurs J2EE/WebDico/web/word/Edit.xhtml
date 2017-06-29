@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditWordTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditWordLabel_idword}" for="idword" />
+                    <h:inputText id="idword" value="#{wordController.selected.idword}" title="#{bundle.EditWordTitle_idword}" required="true" requiredMessage="#{bundle.EditWordRequiredMessage_idword}"/>
+                    <h:outputLabel value="#{bundle.EditWordLabel_word}" for="word" />
+                    <h:inputText id="word" value="#{wordController.selected.word}" title="#{bundle.EditWordTitle_word}" required="true" requiredMessage="#{bundle.EditWordRequiredMessage_word}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{wordController.update}" value="#{bundle.EditWordSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditWordViewLink}"/>
+                <br />
+                <h:commandLink action="#{wordController.prepareList}" value="#{bundle.EditWordShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditWordIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
