@@ -5,6 +5,9 @@ import entity.util.PaginationHelper;
 import bean.WordFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -17,20 +20,41 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
+
 @Named("wordController")
 @SessionScoped
 public class WordController implements Serializable {
 
+
     private Word current;
     private DataModel items = null;
-    @EJB
-    private bean.WordFacade ejbFacade;
+    @EJB private bean.WordFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-
+    int number=0;
+    
     public WordController() {
     }
+    public String search(){
+        
+        if(current.getWord() != null){
+            //Création temp pour stocker résultat
+            Collection<Word> temp = new ArrayList<>();
+            items = new ListDataModel(getFacade().findAll());
+            List<Word> wordList = (List<Word> ) items.getWrappedData();
 
+            for(int i = 0; i < wordList.size(); i++){
+                if(wordList.get(i).getWord().contains(current.getWord()))
+                {
+                    temp.add(wordList.get(i));
+                }
+            }
+            items.setWrappedData(temp);
+            return "List";
+           
+        }
+        return null;
+    }
     public Word getSelected() {
         if (current == null) {
             current = new Word();
@@ -42,7 +66,6 @@ public class WordController implements Serializable {
     private WordFacade getFacade() {
         return ejbFacade;
     }
-
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -54,7 +77,7 @@ public class WordController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
                 }
             };
         }
@@ -67,7 +90,7 @@ public class WordController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Word) getItems().getRowData();
+        current = (Word)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
@@ -90,7 +113,7 @@ public class WordController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Word) getItems().getRowData();
+        current = (Word)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -107,7 +130,7 @@ public class WordController implements Serializable {
     }
 
     public String destroy() {
-        current = (Word) getItems().getRowData();
+        current = (Word)getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -141,16 +164,18 @@ public class WordController implements Serializable {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
             // selected index cannot be bigger than number of items:
-            selectedItemIndex = count - 1;
+            selectedItemIndex = count-1;
             // go to previous page if last page disappeared:
             if (pagination.getPageFirstItem() >= count) {
                 pagination.previousPage();
             }
         }
         if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
+            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex+1}).get(0);
         }
     }
+
+    
 
     public DataModel getItems() {
         if (items == null) {
@@ -158,7 +183,7 @@ public class WordController implements Serializable {
         }
         return items;
     }
-
+    
     private void recreateModel() {
         items = null;
     }
@@ -191,7 +216,7 @@ public class WordController implements Serializable {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Word.class)
+    @FacesConverter(forClass=Word.class)
     public static class WordControllerConverter implements Converter {
 
         @Override
@@ -199,7 +224,7 @@ public class WordController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            WordController controller = (WordController) facesContext.getApplication().getELResolver().
+            WordController controller = (WordController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "wordController");
             return controller.getWord(getKey(value));
         }
@@ -225,7 +250,7 @@ public class WordController implements Serializable {
                 Word o = (Word) object;
                 return getStringKey(o.getIdword());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Word.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+Word.class.getName());
             }
         }
 

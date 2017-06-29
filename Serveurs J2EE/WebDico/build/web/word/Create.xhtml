@@ -15,14 +15,8 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateWordLabel_idword}" for="idword" />
-                    <h:inputText id="idword" value="#{wordController.selected.idword}" title="#{bundle.CreateWordTitle_idword}" required="true" requiredMessage="#{bundle.CreateWordRequiredMessage_idword}"/>
-                    <h:outputLabel value="#{bundle.CreateWordLabel_word}" for="word" />
+                   <h:outputLabel value="#{bundle.CreateWordLabel_word}" for="word" />
                     <h:inputText id="word" value="#{wordController.selected.word}" title="#{bundle.CreateWordTitle_word}" required="true" requiredMessage="#{bundle.CreateWordRequiredMessage_word}"/>
-                    <h:outputLabel value="#{bundle.CreateWordLabel_lastdateword}" for="lastdateword" />
-                    <h:inputText id="lastdateword" value="#{wordController.selected.lastdateword}" title="#{bundle.CreateWordTitle_lastdateword}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{wordController.create}" value="#{bundle.CreateWordSaveLink}" />

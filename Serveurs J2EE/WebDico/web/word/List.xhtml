@@ -10,6 +10,11 @@
             <h:outputText value="#{bundle.ListWordTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            <h:form>
+                <h:outputLabel for="searchbox">Your Search:</h:outputLabel>
+                <h:inputText id="searchbox" value="#{wordController.selected.word}"/>
+                <h:commandButton action="#{wordController.search}" value="#{bundle.Wordsearch}" />
+            </h:form>
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -31,14 +36,6 @@
                                 <h:outputText value="#{bundle.ListWordTitle_word}"/>
                             </f:facet>
                             <h:outputText value="#{item.word}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListWordTitle_lastdateword}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.lastdateword}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

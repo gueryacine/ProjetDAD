@@ -19,10 +19,6 @@
                     <h:inputText id="idword" value="#{wordController.selected.idword}" title="#{bundle.EditWordTitle_idword}" required="true" requiredMessage="#{bundle.EditWordRequiredMessage_idword}"/>
                     <h:outputLabel value="#{bundle.EditWordLabel_word}" for="word" />
                     <h:inputText id="word" value="#{wordController.selected.word}" title="#{bundle.EditWordTitle_word}" required="true" requiredMessage="#{bundle.EditWordRequiredMessage_word}"/>
-                    <h:outputLabel value="#{bundle.EditWordLabel_lastdateword}" for="lastdateword" />
-                    <h:inputText id="lastdateword" value="#{wordController.selected.lastdateword}" title="#{bundle.EditWordTitle_lastdateword}" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
                 </h:panelGrid>
                 <h:commandLink action="#{wordController.update}" value="#{bundle.EditWordSaveLink}"/>
                 <br />

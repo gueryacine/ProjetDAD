@@ -19,10 +19,6 @@
                     <h:outputText value="#{wordController.selected.idword}" title="#{bundle.ViewWordTitle_idword}"/>
                     <h:outputText value="#{bundle.ViewWordLabel_word}"/>
                     <h:outputText value="#{wordController.selected.word}" title="#{bundle.ViewWordTitle_word}"/>
-                    <h:outputText value="#{bundle.ViewWordLabel_lastdateword}"/>
-                    <h:outputText value="#{wordController.selected.lastdateword}" title="#{bundle.ViewWordTitle_lastdateword}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{wordController.destroyAndView}" value="#{bundle.ViewWordDestroyLink}"/>
