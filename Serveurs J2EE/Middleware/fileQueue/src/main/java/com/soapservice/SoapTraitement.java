@@ -7,14 +7,18 @@ package com.soapservice;
 public class SoapTraitement {
 
         
-    public String TransformationFonction(String text){
-      String resultat = "";
-      String[] tabBin =  splitByNumber(text, 8);
-      
-        for (String bintxt : tabBin) {
-            resultat = resultat + binnarytochar(bintxt);
+     public String TransformationFonction(String info, int nbBitPerCharacters){
+        int foo = 0;
+        long charCode;
+        String stringConvertie = "";
+        String [] binaryChar = info.split("(?<=\\G.{"+nbBitPerCharacters+"})");
+                
+        
+        for(int i = 0; i < binaryChar.length; i++){
+            charCode = Long.parseLong(binaryChar[i], 2);
+            stringConvertie += new Character((char)charCode).toString();
         }
-        return resultat;
+        return stringConvertie;
     }
     
     public char binnarytochar(String txt){

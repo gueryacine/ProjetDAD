@@ -39,6 +39,8 @@ public class SoapService {
     @WebMethod(operationName = "SendFileForControl")
     public int sendFileForTraitement(@WebParam(name = "nameFile") String txt,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText) throws JMSException, InterruptedException {
 
+        System.out.println(DecrypteText);
+        DecrypteText=  straitement.TransformationFonction(DecrypteText,8);
         System.out.println(txt);
         System.out.println(key);
         System.out.println(DecrypteText);

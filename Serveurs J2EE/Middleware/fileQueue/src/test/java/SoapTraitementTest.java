@@ -25,7 +25,7 @@ public class SoapTraitementTest {
     @Test
     public void bintexttotext(){
         SoapTraitement st = new SoapTraitement();
-        String t = st.TransformationFonction("0111010001100101011100110111010000100000011110010110010101110011001000000111100101100101011000010110100000100000001000010010000100100001");
+        String t = st.TransformationFonction("01100001011000100110001101100100",8);
         System.out.println(t);
     }
 }
