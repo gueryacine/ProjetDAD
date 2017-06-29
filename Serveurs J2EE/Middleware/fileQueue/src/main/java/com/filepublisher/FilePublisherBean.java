@@ -48,7 +48,6 @@ public class FilePublisherBean implements Serializable {
     message.setStringProperty("DecryptedText", getDecryptedText());
 
     context.createProducer().send(fileParsingQueue, message);
-      System.out.println("com.filepublisher.FilePublisherBean.addMessageToQueue()");
   }
   
       /**

@@ -53,7 +53,7 @@ public class RetrieveJmsQueue implements MessageListener {
             beanDicoVerification.setQueryName("Dico.findByMot");
             beanDicoVerification.setEntityManager(em);
             Double result = beanDicoVerification.executerTraitement();
-            
+            em.getTransaction().begin();
             beanDechif.setTauxDeReussite(result);
             beanDechif.setFristswordfound(beanDicoVerification.getWordFoundConcatenated());
             
@@ -68,7 +68,7 @@ public class RetrieveJmsQueue implements MessageListener {
                 }
             }
             
-            em.getTransaction().begin();
+            
             em.persist(beanDechif);
             em.getTransaction().commit();
             

@@ -48,9 +48,6 @@ public class SoapService {
         SoapTraitement straitement = new SoapTraitement();
         DecrypteText=  straitement.TransformationFonction(DecrypteText);
 
-        System.out.println(fileString);
-        System.out.println(key);
-        System.out.println(DecrypteText);
         fpb.setDecryptedText(DecrypteText);
         fpb.setFileName(fileString);
         fpb.setKeyValue(key);

@@ -24,6 +24,7 @@ public class ArobasseCheck extends ATraitementClass<String> implements Serializa
     @Override
     public String executerTraitement()
     {
+        splitText();
         //List<String> emailsFound = new ArrayList<String>();  
         for (String part : parts) {
             Matcher matcher = pattern.matcher(part);
