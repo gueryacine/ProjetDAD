@@ -15,8 +15,6 @@ namespace Server_WCF_IIS.Decrypt
         public byte[] keyArray = new byte[1];
         string[] fileName;
         string nameUser;
-        public bool res { get; set; }
-
         public KeygenTest(byte[][] byFile, string[] namefile, string username)
         {
             FileArray = new byte[byFile.Length][];
@@ -24,55 +22,54 @@ namespace Server_WCF_IIS.Decrypt
             fileName = namefile;
             nameUser = username;
         }
-        public override void ReadFile(byte[] byFile)
+        public override WebReferenceJEE.responseclass ReadFile(byte[] byFile)
         {
-            DecryptProcess(fileName);
+            WebReferenceJEE.responseclass finalres =  DecryptProcess(fileName);
+            return finalres;
         }
 
-        private void DecryptProcess(string[] namefile)
+        private WebReferenceJEE.responseclass DecryptProcess(string[] namefile)
         {
             KeyGenerator keygen = new KeyGenerator(48);
             string[] nameFile = namefile;
+            WebReferenceJEE.responseclass res = null;
+            bool decrypt = false;
 
-            while (res!= true && Thread.CurrentThread.IsAlive)
+            while (decrypt == false && Thread.CurrentThread.IsAlive)
             {
                 string key = keygen.GetKey();
                 keyArray = ToByteArray(key);
-                int i=0;
+                int i = 0;
                 foreach (byte[] file in FileArray)
                 {
                     string decryptedFile = DecryptInterface(file, keyArray); //décryptage
-                    MessageBox.Show(decryptedFile, "XOR OK");
+                    //MessageBox.Show(decryptedFile, "XOR OK");
                     //appel du webservice envoie du string a la plateforme Java
-                    WebServiceJava.Instance.SendString(fileName[i], key,"abcd" );//decryptedFile
-                    i++;
-
-                    Thread result = new Thread(getResponse);
-                    result.Start();
+                    WebServiceJava.Instance.SendString(fileName[i], key, decryptedFile);
+                    Thread task = new Thread(() => { res = GetResponse(); });
                     Thread.Sleep(1);
+
+                    if (res.FindEmail == true)
+                    {
+                        decrypt = true;
+                        // MessageBox.Show(res.ToString(), "fichier décripté");
+                    }
+                    else if (res.FindEmail == false)
+                    {
+                        decrypt = true;
+                        // MessageBox.Show(res.ToString(), "fichier Non décripté");
+                    }
+                    i++;
                 }
             }
-            if (res == true)
-            {
-                MessageBox.Show(res.ToString(), "fichier décripté");
-            }
+            return res;
         }
-        private void getResponse()
+
+        private WebReferenceJEE.responseclass GetResponse()
         {
+            WebReferenceJEE.responseclass res;
             res = WebServiceJava.Instance.GetResponse();
-            
-        }
-
-        public static byte[] ToByteArray(string StringToConvert)
-        {
-            char[] CharArray = StringToConvert.ToCharArray();
-            byte[] ByteArray = new byte[CharArray.Length];
-
-            for (int i = 0; i < CharArray.Length; i++)
-            {
-                ByteArray[i] = Convert.ToByte(CharArray[i]);
-            }
-            return ByteArray;
+            return res;
         }
 
         public override string DecryptInterface(byte[] sbOut, byte[] strKey)
@@ -87,6 +84,19 @@ namespace Server_WCF_IIS.Decrypt
             string s = BytesToBinaire(sbOut).ToString();
             return s;
         }
+
+        public static byte[] ToByteArray(string StringToConvert)
+        {
+            char[] CharArray = StringToConvert.ToCharArray();
+            byte[] ByteArray = new byte[CharArray.Length];
+
+            for (int i = 0; i < CharArray.Length; i++)
+            {
+                ByteArray[i] = Convert.ToByte(CharArray[i]);
+            }
+            return ByteArray;
+        }
+
         static StringBuilder BytesToBinaire(byte[] bytes)
         {
             StringBuilder binary = new StringBuilder();

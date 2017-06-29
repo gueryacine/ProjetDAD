@@ -36,6 +36,7 @@ namespace ClientWPF
             string Answer = Logged.Login(email,password,AppToken);
             if (Answer == "True")
             {
+                errorMessage.Text = "Connection to server OK";
                 errorMessage.Text = Answer;
                 this.Hide();
                 OpenFileDialogMultipleFilesSample file = new OpenFileDialogMultipleFilesSample();

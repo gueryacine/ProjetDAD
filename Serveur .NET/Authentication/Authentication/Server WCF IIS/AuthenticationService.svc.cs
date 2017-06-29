@@ -26,7 +26,6 @@ namespace Server_WCF_IIS
         private string password;
         private string[] filename;
         private byte[][] files;
-        private bool stopDecrypt { get; set; }
 
         public AuthenticationService() { msg = new MSG(); }
 
@@ -45,11 +44,11 @@ namespace Server_WCF_IIS
                 files = msg.data;
                 email = msg.Email;
                 filename = msg.FileName;
-                LaunchDecrypt(files, filename, email);
+                string stopDecrypt = LaunchDecrypt(files, filename, email);
             }
             return this.msg;
         }
-            public string LoginByToken(string tokenApp)
+        public string LoginByToken(string tokenApp)
         {
             if (tokenApp == "456e7472657a20766f7472652070687261736520696369")
             {
@@ -82,19 +81,15 @@ namespace Server_WCF_IIS
             //context.ContextInterface();
 
             context = new Context(new KeygenTest(files, namefile, username));
-            context.ContextInterface();
+            WebReferenceJEE.responseclass decrypt_OK = context.ContextInterface();
+            msg.Op_statut = decrypt_OK.FindEmail;
 
-            if (stopDecrypt == true)
+            if (decrypt_OK.FindEmail == true)
             {
-               
-                msg.Op_infos = "Decryptage OK";
-                msg.Op_statut = true;
-                
-                //GeneratePDF()
-                //MessageBox.Show(msg.Op_statut.ToString(), "STOPDECRYPT");
-
+                //Envoie du mail au client
+                GeneratePDF(decrypt_OK.email, decrypt_OK.Cle, "FILE");
             }
-            return this.msg.Op_statut.ToString();
+            return msg.Op_statut.ToString();
         }
 
         public void GeneratePDF(string email, string key, string namefile)

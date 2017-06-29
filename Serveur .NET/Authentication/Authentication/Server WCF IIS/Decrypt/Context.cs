@@ -10,6 +10,7 @@ namespace Server_WCF_IIS.Decrypt
         private Strategy _strategy;
         private byte[] strFile;
         private byte[] strKey;
+        private WebReferenceJEE.responseclass res;
 
         // Constructor
         public Context(Strategy strategy)
@@ -17,9 +18,10 @@ namespace Server_WCF_IIS.Decrypt
             this._strategy = strategy;
         }
 
-        public void ContextInterface()
+        public WebReferenceJEE.responseclass ContextInterface()
         {
-            _strategy.ReadFile(strFile);
+            res =  _strategy.ReadFile(strFile);
+            return res;
         }
     }
 }

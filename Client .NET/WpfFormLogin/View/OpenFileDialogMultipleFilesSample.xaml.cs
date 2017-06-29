@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using System.Linq;
 using System.Collections.Generic;
 
+
 namespace WpfFormLogin.View
 {
     /// <summary>
@@ -19,7 +20,6 @@ namespace WpfFormLogin.View
         }
         public byte[][] bytearray;
         public List<string> fileName = new List<string>();
-        string Answer { get; set; }
         private void BtnOpenFiles_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -54,13 +54,12 @@ namespace WpfFormLogin.View
             if (lbFiles.Items.Count > 0)
             {
                 Sender sended = new Sender();
-                Answer = sended.SendFiles(bytearray, fileName.ToArray());
+                string Answer = sended.SendFiles(bytearray, fileName.ToArray());
                 //MessageBox.Show(Answer, "ANSWER");
                 //this.Hide();
                 if (Answer == "True")
                 {
-                    MessageBox.Show(Answer, "Traitement des fichiers OK");
-                    
+                    MessageBox.Show("Le traitement des fichiers est terminé, un mail vous a été envoyé !", "Confirmation");
                 }
             }
         }

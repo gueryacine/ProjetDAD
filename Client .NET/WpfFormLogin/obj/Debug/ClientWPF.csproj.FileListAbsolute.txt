@@ -1,7 +1,6 @@
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\bin\Debug\WpfFormLogin.exe.config
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\bin\Debug\WpfFormLogin.exe
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\bin\Debug\WpfFormLogin.pdb
-C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\ClientWPF.csprojResolveAssemblyReference.cache
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\View\OpenFileDialogMultipleFilesSample.baml
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\View\MainWindow.g.cs
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Client .NET\WpfFormLogin\obj\Debug\View\OpenFileDialogMultipleFilesSample.g.cs

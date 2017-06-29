@@ -36,15 +36,10 @@ namespace Server_WCF_IIS.ServiceJava
         {
             service.SendFileForControlAsync(Namefile, key, DecryptString);
         }
-
-        public bool GetResponse()
+        public WebReferenceJEE.responseclass GetResponse()
         {
             WebReferenceJEE.responseclass resultat = service.SendResponseTraitement();
-            key = resultat.Cle;
-            email = resultat.email;
-            result = resultat.FindEmail;
-
-            return result;
+            return resultat;
         }
     }
 

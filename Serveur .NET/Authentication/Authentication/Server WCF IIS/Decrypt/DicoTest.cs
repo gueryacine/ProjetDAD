@@ -18,6 +18,7 @@ namespace Server_WCF_IIS.Decrypt
         string nameUser;
         string key { get; set; }
         string decryptedFile { get; set; }
+        public WebReferenceJEE.responseclass res { get; set; }
 
         public DicoTest(byte[][] byFile, string[] namefile, string username)
         {
@@ -28,15 +29,16 @@ namespace Server_WCF_IIS.Decrypt
             CharArray = new char[10000];
         }
 
-        public override void ReadFile(byte[] byFile)
+        public override WebReferenceJEE.responseclass ReadFile(byte[] byFile)
         {
-            //webservice ref
+            WebReferenceJEE.responseclass finalres;
             char[] delimiterChars = { ' ', ',' };
             var list = new List<string>();
             var fileStream = new FileStream(@"C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Generateur\dico.txt", FileMode.Open, FileAccess.Read);
             using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
             {
                 string line;
+                
                 while ((line = streamReader.ReadLine()) != null)
                 {
                     foreach (string s in line.Split(','))
@@ -53,26 +55,48 @@ namespace Server_WCF_IIS.Decrypt
                     dico[i] = Convert.ToByte(CharArray[i]);
                 }
                 //MessageBox.Show(dico.ToString());
-                DecryptProcess(dico);
+               finalres=  DecryptProcess(dico);
             }
-            MessageBox.Show("files","All Files XOR OK");
+            MessageBox.Show("files", "All Files XOR OK");
+            return finalres;
         }
 
-        public void DecryptProcess(byte[] dico)
+        public WebReferenceJEE.responseclass DecryptProcess(byte[] dico)
         {
-            while ( Thread.CurrentThread.IsAlive)//keygen.nextKeyExist() &&
+            WebReferenceJEE.responseclass decrypt = null;
+            while (res.FindEmail == false && Thread.CurrentThread.IsAlive)
             {
                 int j = 0;
                 foreach (byte[] file in FileArray)
                 {
-                    string res = DecryptInterface(file, dico); //décryptage
-                    MessageBox.Show(res, "resultat");
+                    string decryptedFile = DecryptInterface(file, dico); //décryptage
+                    MessageBox.Show(decryptedFile, "resultat");
                     //appel du webservice envoie du string a la plateforme Java
-                    WebServiceJava.Instance.SendString(fileName[j], key, res);
-                    WebServiceJava.Instance.GetResponse();
+                    WebServiceJava.Instance.SendString(fileName[j], key, decryptedFile);
+
+                    Thread tasks = new Thread(() => { res = GetResponse(); });
+                    Thread.Sleep(1);
+
+                    if (res.FindEmail == true)
+                    {
+                        decrypt.FindEmail = true;
+                        MessageBox.Show(res.ToString(), "fichier décripté");
+                    }
+                    else if (res.FindEmail == false)
+                    {
+                        decrypt.FindEmail = false;
+                        MessageBox.Show(res.ToString(), "fichier Non décripté");
+                    }
                     j++;
                 }
             }
+            return decrypt;
+        }
+
+        public WebReferenceJEE.responseclass GetResponse()
+        {
+            res = WebServiceJava.Instance.GetResponse();
+            return res;
         }
 
         public override string DecryptInterface(byte[] sbOut, byte[] strKey)
@@ -84,12 +108,24 @@ namespace Server_WCF_IIS.Decrypt
                     sbOut[i * 6 + j] ^= strKey[j];
                     key = CharArray[j].ToString();
                 }
-                //decryptedFile =
             }
-            //MessageBox.Show(key, "key");
-            string s = Encoding.UTF8.GetString(sbOut, 0, sbOut.Length);
-            //MessageBox.Show(s, "XOR OK");
+            string s = BytesToBinaire(sbOut).ToString();
             return s;
+        }
+
+        static StringBuilder BytesToBinaire(byte[] bytes)
+        {
+            StringBuilder binary = new StringBuilder();
+            foreach (byte b in bytes)
+            {
+                int val = b;
+                for (int i = 0; i < 8; i++)
+                {
+                    binary.Append((val & 128) == 0 ? 0 : 1);
+                    val <<= 1;
+                }
+            }
+            return binary;
         }
     }
 }
