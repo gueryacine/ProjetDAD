@@ -5,7 +5,7 @@
  */
 package com.soapservice;
 
-import com.filepublisher.filePublisherBean;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.jms.JMSConnectionFactory;
@@ -30,16 +30,30 @@ public class SoapService {
     @JMSConnectionFactory("java:comp/DefaultJMSConnectionFactory")
     private JMSContext context;
     
+    SoapTraitement straitement = new SoapTraitement();
     /**
      * This is a sample web service operation
      */
-    @WebMethod(operationName = "sendDecrypteFile")
-    public String hello(@WebParam(name = "nameFile") String txt,@WebParam(name = "key") String key) throws JMSException {
+    @WebMethod(operationName = "SendFileForControl")
+    public int sendFileForTraitement(@WebParam(name = "nameFile") String txt,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText) throws JMSException, InterruptedException {
 
-        context.createProducer().send(queue, txt);
-        //return queuePublicher.getMessage();
+        System.out.println(DecrypteText);
+        DecrypteText=  straitement.TransformationFonction(DecrypteText,8);
         System.out.println(txt);
         System.out.println(key);
-        return "YES!";
+        System.out.println(DecrypteText);
+        
+        
+        context.createProducer().send(queue, txt);
+        //return queuePublicher.getMessage();
+ 
+        return 52;
+    }
+    
+        @WebMethod(operationName = "SendResponseTraitement")
+        public Responseclass sendResponseTraitement() throws JMSException {
+          //Check if id it's ok
+          Responseclass rc = new Responseclass(false,"dzadazd", "dzadaz@zdzad.de");
+          return rc;
     }
 }
