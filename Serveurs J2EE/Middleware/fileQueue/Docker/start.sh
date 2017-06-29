@@ -3,6 +3,7 @@
 # .war deploy
 /usr/local/glassfish4/bin/asadmin start-domain
 /usr/local/glassfish4/bin/asadmin -u admin deploy /fileQueue.war
+/usr/local/glassfish4/bin/asadmin -u admin deploy /WebDictionary.war
 
 # queue setup
 asadmin --host localhost --user admin --passwordfile=/passwordChange.file change-admin-password
