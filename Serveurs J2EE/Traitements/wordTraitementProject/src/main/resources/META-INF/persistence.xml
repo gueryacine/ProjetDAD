@@ -5,6 +5,7 @@
     <class>com.dao.model.Dico</class>
     <class>com.dao.model.Dechiffrage</class>
     <properties>
+
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.99.100:3306/dadjeepart?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
@@ -12,3 +13,4 @@
     </properties>
   </persistence-unit>
 </persistence>
+

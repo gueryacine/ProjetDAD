@@ -6,18 +6,15 @@ package com.soapservice;
  */
 public class SoapTraitement {
 
-        
-     public String TransformationFonction(String info, int nbBitPerCharacters){
-        int foo = 0;
-        long charCode;
+
+     public String TransformationFonction(String info){
+
         String stringConvertie = "";
-        String [] binaryChar = info.split("(?<=\\G.{"+nbBitPerCharacters+"})");
-                
-        
-        for(int i = 0; i < binaryChar.length; i++){
-            charCode = Long.parseLong(binaryChar[i], 2);
-            stringConvertie += new Character((char)charCode).toString();
-        }
+        String[] binaryChar = splitByNumber(info, 8);
+         for (String string : binaryChar) {
+             char c = binnarytochar(string);
+             stringConvertie += c;
+         }
         return stringConvertie;
     }
     

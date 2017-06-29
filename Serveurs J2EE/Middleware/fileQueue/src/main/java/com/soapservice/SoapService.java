@@ -5,7 +5,6 @@
  */
 package com.soapservice;
 
-
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.jms.JMSConnectionFactory;
@@ -23,6 +22,8 @@ import javax.jws.WebParam;
 @WebService(serviceName = "SoapService")
 public class SoapService {
     
+    
+    
     @Resource(mappedName = "jms/fileParsingQueue")
     private Queue queue;
     
@@ -35,10 +36,11 @@ public class SoapService {
      * This is a sample web service operation
      */
     @WebMethod(operationName = "SendFileForControl")
-    public int sendFileForTraitement(@WebParam(name = "nameFile") String txt,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText) throws JMSException, InterruptedException {
 
-        System.out.println(DecrypteText);
-        DecrypteText=  straitement.TransformationFonction(DecrypteText,8);
+    public int sendFileForTraitement(@WebParam(name = "nameFile") String txt,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText)throws JMSException{
+        SoapTraitement straitement = new SoapTraitement();
+        DecrypteText=  straitement.TransformationFonction(DecrypteText);
+
         System.out.println(txt);
         System.out.println(key);
         System.out.println(DecrypteText);
@@ -46,7 +48,6 @@ public class SoapService {
         
         context.createProducer().send(queue, txt);
         //return queuePublicher.getMessage();
- 
         return 52;
     }
     

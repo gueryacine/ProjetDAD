@@ -35,6 +35,7 @@ public class EntityManagerController {
     public void setEm(EntityManager em) {
         this.em = em;
     }
+
     public EntityManagerController() {
         emf = Persistence.createEntityManagerFactory("newPU");
         em = emf.createEntityManager();
