@@ -5,6 +5,7 @@
  */
 package com.soapservice;
 
+import com.filepublisher.FilePublisherBean;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.jms.JMSConnectionFactory;
@@ -32,24 +33,31 @@ public class SoapService {
     private JMSContext context;
     
     SoapTraitement straitement = new SoapTraitement();
+    
     /**
      * This is a sample web service operation
      */
     @WebMethod(operationName = "SendFileForControl")
 
-    public boolean sendFileForTraitement(@WebParam(name = "nameFile") String txt,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText)throws JMSException{
+    public boolean sendFileForTraitement(@WebParam(name = "nameFile") String fileString,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText)throws JMSException{
         try
         {
         SoapTraitement straitement = new SoapTraitement();
         DecrypteText=  straitement.TransformationFonction(DecrypteText);
 
-        System.out.println(txt);
+        System.out.println(fileString);
         System.out.println(key);
         System.out.println(DecrypteText);
+        FilePublisherBean fpb = new FilePublisherBean();
+        fpb.setDecryptedText(DecrypteText);
+        fpb.setFileName(fileString);
+        fpb.setKeyValue(key);
+        fpb.addMessageToQueue();
         
-        
-        context.createProducer().send(queue, txt);
+        //context.createProducer().send(queue, txt);
         //return queuePublicher.getMessage();
+        
+        
         return true;
         } catch(Exception e)
         {

@@ -1,2 +1,4 @@
-com\filepublisher\filePublisherBean.class
+com\filepublisher\FilePublisherBean.class
+com\soapservice\Responseclass.class
+com\soapservice\SoapTraitement.class
 com\soapservice\SoapService.class
