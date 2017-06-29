@@ -32,6 +32,9 @@ public class SoapService {
     @JMSConnectionFactory("java:comp/DefaultJMSConnectionFactory")
     private JMSContext context;
     
+    @Inject
+    private FilePublisherBean fpb;
+    
     SoapTraitement straitement = new SoapTraitement();
     
     /**
@@ -48,7 +51,6 @@ public class SoapService {
         System.out.println(fileString);
         System.out.println(key);
         System.out.println(DecrypteText);
-        FilePublisherBean fpb = new FilePublisherBean();
         fpb.setDecryptedText(DecrypteText);
         fpb.setFileName(fileString);
         fpb.setKeyValue(key);
@@ -56,8 +58,6 @@ public class SoapService {
         
         //context.createProducer().send(queue, txt);
         //return queuePublicher.getMessage();
-        
-        
         return true;
         } catch(Exception e)
         {
