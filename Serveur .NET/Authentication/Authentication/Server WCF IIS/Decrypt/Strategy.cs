@@ -9,6 +9,6 @@ namespace Server_WCF_IIS.Decrypt
     abstract class Strategy
     {
         public abstract string DecryptInterface(byte[] byFile, byte[] strKey);
-        public abstract WebReferenceJEE.responseclass ReadFile(byte[] byFile);
+        public abstract string ReadFile(byte[] byFile);
     }
 }

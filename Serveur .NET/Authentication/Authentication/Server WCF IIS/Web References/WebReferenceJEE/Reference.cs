@@ -108,12 +108,12 @@ namespace Server_WCF_IIS.WebReferenceJEE {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://soapservice.com/", ResponseNamespace="http://soapservice.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int SendFileForControl([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string nameFile, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string key, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string DecrypteString) {
+        public bool SendFileForControl([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string nameFile, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string key, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string DecrypteString) {
             object[] results = this.Invoke("SendFileForControl", new object[] {
                         nameFile,
                         key,
                         DecrypteString});
-            return ((int)(results[0]));
+            return ((bool)(results[0]));
         }
         
         /// <remarks/>
@@ -263,10 +263,10 @@ namespace Server_WCF_IIS.WebReferenceJEE {
         }
         
         /// <remarks/>
-        public int Result {
+        public bool Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
+                return ((bool)(this.results[0]));
             }
         }
     }

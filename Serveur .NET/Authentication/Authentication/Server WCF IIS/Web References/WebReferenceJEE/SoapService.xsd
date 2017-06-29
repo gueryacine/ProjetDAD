@@ -52,7 +52,7 @@
   </xs:complexType>
   <xs:complexType name="SendFileForControlResponse">
     <xs:sequence>
-      <xs:element name="return" type="xs:int" />
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="InterruptedException">

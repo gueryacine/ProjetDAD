@@ -26,12 +26,6 @@
   <wsdl:message name="IAuthenticationService_Dispatching_OutputMessage">
     <wsdl:part name="parameters" element="tns:DispatchingResponse" />
   </wsdl:message>
-  <wsdl:message name="IAuthenticationService_LoadFiles_InputMessage">
-    <wsdl:part name="parameters" element="tns:LoadFiles" />
-  </wsdl:message>
-  <wsdl:message name="IAuthenticationService_LoadFiles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoadFilesResponse" />
-  </wsdl:message>
   <wsdl:portType name="IAuthenticationService">
     <wsdl:operation name="LoginByPassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuthenticationService/LoginByPassword" message="tns:IAuthenticationService_LoginByPassword_InputMessage" />
@@ -44,10 +38,6 @@
     <wsdl:operation name="Dispatching">
       <wsdl:input wsaw:Action="http://tempuri.org/IAuthenticationService/Dispatching" message="tns:IAuthenticationService_Dispatching_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAuthenticationService/DispatchingResponse" message="tns:IAuthenticationService_Dispatching_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="LoadFiles">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAuthenticationService/LoadFiles" message="tns:IAuthenticationService_LoadFiles_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAuthenticationService/LoadFilesResponse" message="tns:IAuthenticationService_LoadFiles_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAuthenticationService" type="tns:IAuthenticationService">
@@ -72,15 +62,6 @@
     </wsdl:operation>
     <wsdl:operation name="Dispatching">
       <soap:operation soapAction="http://tempuri.org/IAuthenticationService/Dispatching" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="LoadFiles">
-      <soap:operation soapAction="http://tempuri.org/IAuthenticationService/LoadFiles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

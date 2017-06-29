@@ -22,17 +22,17 @@ namespace Server_WCF_IIS.Decrypt
             fileName = namefile;
             nameUser = username;
         }
-        public override WebReferenceJEE.responseclass ReadFile(byte[] byFile)
+        public override string ReadFile(byte[] byFile)
         {
-            WebReferenceJEE.responseclass finalres =  DecryptProcess(fileName);
+            string finalres =  DecryptProcess(fileName);
             return finalres;
         }
 
-        private WebReferenceJEE.responseclass DecryptProcess(string[] namefile)
+        private string DecryptProcess(string[] namefile)
         {
             KeyGenerator keygen = new KeyGenerator(48);
             string[] nameFile = namefile;
-            WebReferenceJEE.responseclass res = null;
+            string res="False";
             bool decrypt = false;
 
             while (decrypt == false && Thread.CurrentThread.IsAlive)
@@ -46,17 +46,18 @@ namespace Server_WCF_IIS.Decrypt
                     //MessageBox.Show(decryptedFile, "XOR OK");
                     //appel du webservice envoie du string a la plateforme Java
                     WebServiceJava.Instance.SendString(fileName[i], key, decryptedFile);
-                    Thread task = new Thread(() => { res = GetResponse(); });
+                    Thread tasks = new Thread(() => { res = GetResponse(); });
                     Thread.Sleep(1);
+                    res = GetResponse(); 
 
-                    if (res.FindEmail == true)
+                    if (res == "True")
                     {
                         decrypt = true;
                         // MessageBox.Show(res.ToString(), "fichier décripté");
                     }
-                    else if (res.FindEmail == false)
+                    else if (res == "False")
                     {
-                        decrypt = true;
+                        res= "True";
                         // MessageBox.Show(res.ToString(), "fichier Non décripté");
                     }
                     i++;
@@ -65,10 +66,10 @@ namespace Server_WCF_IIS.Decrypt
             return res;
         }
 
-        private WebReferenceJEE.responseclass GetResponse()
+        private string GetResponse()
         {
-            WebReferenceJEE.responseclass res;
-            res = WebServiceJava.Instance.GetResponse();
+            string res;
+            res = WebServiceJava.Instance.GetResponse().FindEmail.ToString();
             return res;
         }
 

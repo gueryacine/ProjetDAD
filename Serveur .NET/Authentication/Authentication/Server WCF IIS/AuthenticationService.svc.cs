@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Server_WCF_IIS.Decrypt;
+using Server_WCF_IIS.ServiceJava;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading;
 using System.Windows;
 
 namespace Server_WCF_IIS
@@ -26,8 +28,25 @@ namespace Server_WCF_IIS
         private string password;
         private string[] filename;
         private byte[][] files;
-
-        public AuthenticationService() { msg = new MSG(); }
+        Thread tasks;
+        public WebReferenceJEE.responseclass response;
+        public AuthenticationService()
+        {
+            msg = new MSG();
+            tasks = new Thread(() =>
+            {
+                while (!Thread.CurrentThread.IsAlive)
+                {
+                    response = GetResponse();
+                    if (response.FindEmail == true)
+                    {
+                        GeneratePDF(response.email, response.Cle, "FILE");
+                    }
+                }
+            });
+            tasks.Start();
+            Thread.Sleep(5000);
+        }
 
         public MSG Dispatching(MSG msg)
         {
@@ -81,13 +100,14 @@ namespace Server_WCF_IIS
             //context.ContextInterface();
 
             context = new Context(new KeygenTest(files, namefile, username));
-            WebReferenceJEE.responseclass decrypt_OK = context.ContextInterface();
-            msg.Op_statut = decrypt_OK.FindEmail;
+            string decrypt_OK = context.ContextInterface();
+            //msg.Op_statut = decrypt_OK.FindEmail;
 
-            if (decrypt_OK.FindEmail == true)
+            if (decrypt_OK == "True")
             {
                 //Envoie du mail au client
-                GeneratePDF(decrypt_OK.email, decrypt_OK.Cle, "FILE");
+                MessageBox.Show("send PDF");
+                //GeneratePDF(decrypt_OK.email, decrypt_OK.Cle, "FILE");
             }
             return msg.Op_statut.ToString();
         }
@@ -107,7 +127,7 @@ namespace Server_WCF_IIS
             doc.Close();
             memoryStream.Position = 0;
 
-            MailMessage mm = new MailMessage("exiaprojet2017@gmail.com", "martin.juguera@viacesi.fr")
+            MailMessage mm = new MailMessage("exiaprojet2017@gmail.com", "vanaelst.dva@gmail.com")
             {
                 Subject = "Decrypt",
                 IsBodyHtml = true,
@@ -122,8 +142,15 @@ namespace Server_WCF_IIS
                 EnableSsl = true,
                 Credentials = new NetworkCredential("exiaprojet2017@gmail.com", "02mai1989")
             };
-
+            MessageBox.Show("sPDF Senddd");
             smtp.Send(mm);
+        }
+
+        public WebReferenceJEE.responseclass GetResponse()
+        {
+            WebReferenceJEE.responseclass res;
+            res = WebServiceJava.Instance.GetResponse();
+            return res;
         }
     }
 

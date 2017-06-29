@@ -61,6 +61,17 @@ namespace Server_WCF_IIS
         //check username+pâssword
         private bool Check_User(string username, string password)
         {
+            //MySqlCommand check_User_Name = new MySqlCommand("SELECT count(*) FROM IP WHERE Username = @username", connection);
+            //check_User_Name.Parameters.AddWithValue("@username", userName);
+            //int UserExist = (int)check_User_Name.ExecuteScalar();
+            //if (UserExist > 0)
+            //{
+            //    MessageBox.Show("User Exist");
+            //}
+            //else
+            //{
+            //    //execute insert here
+            //}
             bool credentials = false;
             string select = "SELECT * FROM User " + "WHERE EmailUser = \'" + username + "\'";
             MySqlCommand cmd = new MySqlCommand(select, connection);

@@ -18,7 +18,7 @@ namespace Server_WCF_IIS.Decrypt
         string nameUser;
         string key { get; set; }
         string decryptedFile { get; set; }
-        public WebReferenceJEE.responseclass res { get; set; }
+        public string res { get; set; }
 
         public DicoTest(byte[][] byFile, string[] namefile, string username)
         {
@@ -29,9 +29,9 @@ namespace Server_WCF_IIS.Decrypt
             CharArray = new char[10000];
         }
 
-        public override WebReferenceJEE.responseclass ReadFile(byte[] byFile)
+        public override string ReadFile(byte[] byFile)
         {
-            WebReferenceJEE.responseclass finalres;
+            string finalres;
             char[] delimiterChars = { ' ', ',' };
             var list = new List<string>();
             var fileStream = new FileStream(@"C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Generateur\dico.txt", FileMode.Open, FileAccess.Read);
@@ -55,16 +55,16 @@ namespace Server_WCF_IIS.Decrypt
                     dico[i] = Convert.ToByte(CharArray[i]);
                 }
                 //MessageBox.Show(dico.ToString());
-               finalres=  DecryptProcess(dico);
+               finalres =  DecryptProcess(dico);
             }
             MessageBox.Show("files", "All Files XOR OK");
             return finalres;
         }
 
-        public WebReferenceJEE.responseclass DecryptProcess(byte[] dico)
+        public string DecryptProcess(byte[] dico)
         {
-            WebReferenceJEE.responseclass decrypt = null;
-            while (res.FindEmail == false && Thread.CurrentThread.IsAlive)
+            string decrypt = null;
+            while (res == "False" && Thread.CurrentThread.IsAlive)
             {
                 int j = 0;
                 foreach (byte[] file in FileArray)
@@ -77,14 +77,14 @@ namespace Server_WCF_IIS.Decrypt
                     Thread tasks = new Thread(() => { res = GetResponse(); });
                     Thread.Sleep(1);
 
-                    if (res.FindEmail == true)
+                    if (res == "True")
                     {
-                        decrypt.FindEmail = true;
+                        decrypt = "True";
                         MessageBox.Show(res.ToString(), "fichier décripté");
                     }
-                    else if (res.FindEmail == false)
+                    else if (res == "False")
                     {
-                        decrypt.FindEmail = false;
+                        decrypt = "False";
                         MessageBox.Show(res.ToString(), "fichier Non décripté");
                     }
                     j++;
@@ -93,9 +93,10 @@ namespace Server_WCF_IIS.Decrypt
             return decrypt;
         }
 
-        public WebReferenceJEE.responseclass GetResponse()
+        public string GetResponse()
         {
-            res = WebServiceJava.Instance.GetResponse();
+            string res;
+            res = WebServiceJava.Instance.GetResponse().FindEmail.ToString();
             return res;
         }
 
