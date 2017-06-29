@@ -29,9 +29,9 @@ namespace Server_WCF_IIS.WebReferenceJEE {
     [System.Web.Services.WebServiceBindingAttribute(Name="SoapServicePortBinding", Namespace="http://soapservice.com/")]
     public partial class SoapService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback SendFileForControlOperationCompleted;
-        
         private System.Threading.SendOrPostCallback SendResponseTraitementOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SendFileForControlOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -72,10 +72,38 @@ namespace Server_WCF_IIS.WebReferenceJEE {
         }
         
         /// <remarks/>
+        public event SendResponseTraitementCompletedEventHandler SendResponseTraitementCompleted;
+        
+        /// <remarks/>
         public event SendFileForControlCompletedEventHandler SendFileForControlCompleted;
         
         /// <remarks/>
-        public event SendResponseTraitementCompletedEventHandler SendResponseTraitementCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://soapservice.com/", ResponseNamespace="http://soapservice.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public responseclass SendResponseTraitement() {
+            object[] results = this.Invoke("SendResponseTraitement", new object[0]);
+            return ((responseclass)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SendResponseTraitementAsync() {
+            this.SendResponseTraitementAsync(null);
+        }
+        
+        /// <remarks/>
+        public void SendResponseTraitementAsync(object userState) {
+            if ((this.SendResponseTraitementOperationCompleted == null)) {
+                this.SendResponseTraitementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendResponseTraitementOperationCompleted);
+            }
+            this.InvokeAsync("SendResponseTraitement", new object[0], this.SendResponseTraitementOperationCompleted, userState);
+        }
+        
+        private void OnSendResponseTraitementOperationCompleted(object arg) {
+            if ((this.SendResponseTraitementCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SendResponseTraitementCompleted(this, new SendResponseTraitementCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://soapservice.com/", ResponseNamespace="http://soapservice.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -112,36 +140,6 @@ namespace Server_WCF_IIS.WebReferenceJEE {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://soapservice.com/", ResponseNamespace="http://soapservice.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int SendResponseTraitement([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int id) {
-            object[] results = this.Invoke("SendResponseTraitement", new object[] {
-                        id});
-            return ((int)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void SendResponseTraitementAsync(int id) {
-            this.SendResponseTraitementAsync(id, null);
-        }
-        
-        /// <remarks/>
-        public void SendResponseTraitementAsync(int id, object userState) {
-            if ((this.SendResponseTraitementOperationCompleted == null)) {
-                this.SendResponseTraitementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSendResponseTraitementOperationCompleted);
-            }
-            this.InvokeAsync("SendResponseTraitement", new object[] {
-                        id}, this.SendResponseTraitementOperationCompleted, userState);
-        }
-        
-        private void OnSendResponseTraitementOperationCompleted(object arg) {
-            if ((this.SendResponseTraitementCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.SendResponseTraitementCompleted(this, new SendResponseTraitementCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -161,27 +159,62 @@ namespace Server_WCF_IIS.WebReferenceJEE {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
-    public delegate void SendFileForControlCompletedEventHandler(object sender, SendFileForControlCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class SendFileForControlCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://soapservice.com/")]
+    public partial class responseclass {
         
-        private object[] results;
+        private bool findEmailField;
         
-        internal SendFileForControlCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
+        private bool findEmailFieldSpecified;
+        
+        private string cleField;
+        
+        private string emailField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool FindEmail {
+            get {
+                return this.findEmailField;
+            }
+            set {
+                this.findEmailField = value;
+            }
         }
         
         /// <remarks/>
-        public int Result {
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool FindEmailSpecified {
             get {
-                this.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
+                return this.findEmailFieldSpecified;
+            }
+            set {
+                this.findEmailFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string Cle {
+            get {
+                return this.cleField;
+            }
+            set {
+                this.cleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
             }
         }
     }
@@ -199,6 +232,32 @@ namespace Server_WCF_IIS.WebReferenceJEE {
         private object[] results;
         
         internal SendResponseTraitementCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public responseclass Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((responseclass)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void SendFileForControlCompletedEventHandler(object sender, SendFileForControlCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SendFileForControlCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SendFileForControlCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

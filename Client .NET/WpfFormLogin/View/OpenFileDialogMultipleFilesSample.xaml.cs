@@ -12,13 +12,14 @@ namespace WpfFormLogin.View
     /// </summary>
     public partial class OpenFileDialogMultipleFilesSample : Window
     {
+
         public OpenFileDialogMultipleFilesSample()
         {
             InitializeComponent();
         }
         public byte[][] bytearray;
         public List<string> fileName = new List<string>();
-
+        string Answer { get; set; }
         private void BtnOpenFiles_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -53,7 +54,14 @@ namespace WpfFormLogin.View
             if (lbFiles.Items.Count > 0)
             {
                 Sender sended = new Sender();
-                string Answer = sended.SendFiles(bytearray, fileName.ToArray());
+                Answer = sended.SendFiles(bytearray, fileName.ToArray());
+                //MessageBox.Show(Answer, "ANSWER");
+                //this.Hide();
+                if (Answer == "True")
+                {
+                    MessageBox.Show(Answer, "Traitement des fichiers OK");
+                    
+                }
             }
         }
     }

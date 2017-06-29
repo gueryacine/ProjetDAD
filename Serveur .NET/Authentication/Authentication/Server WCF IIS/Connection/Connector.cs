@@ -38,7 +38,7 @@ namespace Server_WCF_IIS
             try
             {
                 connection.Open();
-                MessageBox.Show("Connection Open");
+                //MessageBox.Show("Connection Open");
                 bool CKU = Check_User(username, password);
                 if (CKU == true)
                 {
@@ -53,8 +53,8 @@ namespace Server_WCF_IIS
             }
             catch (MySqlException co)
             {
-                MessageBox.Show(co.ToString());
-                MessageBox.Show("Non Connecté");
+                //MessageBox.Show(co.ToString());
+                //MessageBox.Show("Non Connecté");
             }
             return tokenUser;
         }
@@ -75,20 +75,20 @@ namespace Server_WCF_IIS
                         string pass = Connection.EncryptPass.EncryptSHA512Managed(password);
                         if (hash_db == pass)
                         {
-                            MessageBox.Show("Login OK", " Welcome to the WHITE HAT organisation");
+                            //MessageBox.Show("Login OK", " Welcome to the WHITE HAT organisation");
                             credentials = true;
                             reader.Close();
                         }
                         else
                         {
                             reader.Close();
-                            MessageBox.Show("Login Error", "Incorrect password.");
+                            //MessageBox.Show("Login Error", "Incorrect password.");
                         }
                     }
                     else
                     {
                         reader.Close();
-                        MessageBox.Show("Login Error", "User not found");
+                        //MessageBox.Show("Login Error", "User not found");
                     }
                 }
                 return credentials;
@@ -106,14 +106,14 @@ namespace Server_WCF_IIS
                 {
                     if (reader.Read())
                     {
-                        if (reader.IsDBNull(0))
-                        {
+                        //if (reader.IsDBNull(0))
+                        //{
                             token = "0";
-                        }
-                        else
-                        {
+                        //}
+                        //else
+                        //{
                             token = reader.GetString(0);
-                        }
+                        //}
                     }
                 }
             }
@@ -126,7 +126,7 @@ namespace Server_WCF_IIS
             string token = null;
             int length = 20;
             token = TokenGenerator.Instance.BuildSecureToken(length);
-            MessageBox.Show(token, "BUILD TOKEN");
+            //MessageBox.Show(token, "BUILD TOKEN");
             return token;
         }
         //Update TokenUser
@@ -136,7 +136,6 @@ namespace Server_WCF_IIS
             MySqlCommand cmd = new MySqlCommand(updateToken, connection);
             cmd.ExecuteNonQuery();
         }
-
         private bool CloseConnection()
         {
             try
@@ -150,49 +149,6 @@ namespace Server_WCF_IIS
                 return false;
             }
         }
-
-        //Select statement
-        public List<string>[] Select()
-        {
-            string query = "SELECT * FROM tableinfo";
-
-            //Create a list to store the result
-            List<string>[] list = new List<string>[3];
-            list[0] = new List<string>();
-            list[1] = new List<string>();
-            list[2] = new List<string>();
-
-            //Open connection
-            //if (this.OpenConnection() == true)
-            //{
-            //    //Create Command
-            //    MySqlCommand cmd = new MySqlCommand(query, connection);
-            //    //Create a data reader and Execute the command
-            //    MySqlDataReader dataReader = cmd.ExecuteReader();
-
-            //    //Read the data and store them in the list
-            //    while (dataReader.Read())
-            //    {
-            //        list[0].Add(dataReader["id"] + "");
-            //        list[1].Add(dataReader["name"] + "");
-            //        list[2].Add(dataReader["age"] + "");
-            //    }
-
-            //    //close Data Reader
-            //    dataReader.Close();
-
-            //    //close Connection
-            //    this.CloseConnection();
-
-            //    //return list to be displayed
-            //    return list;
-            //}
-            //else
-            //{
-            return list;
-            //}
-        }
-
         //Backup
         public void Backup()
         {
@@ -236,7 +192,6 @@ namespace Server_WCF_IIS
                 MessageBox.Show("Error , unable to backup!");
             }
         }
-
         //Restore
         public void Restore()
         {

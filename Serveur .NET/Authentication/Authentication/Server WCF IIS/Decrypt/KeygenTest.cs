@@ -15,6 +15,7 @@ namespace Server_WCF_IIS.Decrypt
         public byte[] keyArray = new byte[1];
         string[] fileName;
         string nameUser;
+        public bool res { get; set; }
 
         public KeygenTest(byte[][] byFile, string[] namefile, string username)
         {
@@ -33,7 +34,7 @@ namespace Server_WCF_IIS.Decrypt
             KeyGenerator keygen = new KeyGenerator(48);
             string[] nameFile = namefile;
 
-            while (keygen.nextKeyExist() && Thread.CurrentThread.IsAlive)
+            while (res!= true && Thread.CurrentThread.IsAlive)
             {
                 string key = keygen.GetKey();
                 keyArray = ToByteArray(key);
@@ -41,12 +42,25 @@ namespace Server_WCF_IIS.Decrypt
                 foreach (byte[] file in FileArray)
                 {
                     string decryptedFile = DecryptInterface(file, keyArray); //décryptage
-                    //MessageBox.Show(decryptedFile, "XOR OK");
+                    MessageBox.Show(decryptedFile, "XOR OK");
                     //appel du webservice envoie du string a la plateforme Java
-                    WebServiceJava.Instance.SendString(fileName[i], key, decryptedFile);
+                    WebServiceJava.Instance.SendString(fileName[i], key,"abcd" );//decryptedFile
                     i++;
+
+                    Thread result = new Thread(getResponse);
+                    result.Start();
+                    Thread.Sleep(1);
                 }
             }
+            if (res == true)
+            {
+                MessageBox.Show(res.ToString(), "fichier décripté");
+            }
+        }
+        private void getResponse()
+        {
+            res = WebServiceJava.Instance.GetResponse();
+            
         }
 
         public static byte[] ToByteArray(string StringToConvert)
@@ -70,9 +84,22 @@ namespace Server_WCF_IIS.Decrypt
                     sbOut[i * 6 + j] ^= strKey[j];
                 }
             }
-            string s = Encoding.UTF8.GetString(sbOut, 0, sbOut.Length);
+            string s = BytesToBinaire(sbOut).ToString();
             return s;
         }
-
+        static StringBuilder BytesToBinaire(byte[] bytes)
+        {
+            StringBuilder binary = new StringBuilder();
+            foreach (byte b in bytes)
+            {
+                int val = b;
+                for (int i = 0; i < 8; i++)
+                {
+                    binary.Append((val & 128) == 0 ? 0 : 1);
+                    val <<= 1;
+                }
+            }
+            return binary;
+        }
     }
 }

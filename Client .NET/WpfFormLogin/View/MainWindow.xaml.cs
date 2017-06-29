@@ -37,7 +37,7 @@ namespace ClientWPF
             if (Answer == "True")
             {
                 errorMessage.Text = Answer;
-                //this.Hide();
+                this.Hide();
                 OpenFileDialogMultipleFilesSample file = new OpenFileDialogMultipleFilesSample();
                 file.Show();
             }

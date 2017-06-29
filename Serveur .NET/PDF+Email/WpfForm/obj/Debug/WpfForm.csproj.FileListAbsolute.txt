@@ -1,0 +1,16 @@
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\MainWindow.g.cs
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\App.g.cs
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\WpfForm_MarkupCompile.cache
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\WpfForm_MarkupCompile.lref
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\bin\Debug\WpfForm.exe.config
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\bin\Debug\WpfForm.exe
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\bin\Debug\WpfForm.pdb
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\bin\Debug\itextsharp.dll
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\bin\Debug\itextsharp.xml
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\MainWindow.baml
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\WpfForm.g.resources
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\WpfForm.Properties.Resources.resources
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\WpfForm.csproj.GenerateResource.Cache
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\WpfForm.exe
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\WpfForm.pdb
+c:\users\cepes\documents\visual studio 2017\Projects\WpfForm\WpfForm\obj\Debug\WpfForm.csprojResolveAssemblyReference.cache

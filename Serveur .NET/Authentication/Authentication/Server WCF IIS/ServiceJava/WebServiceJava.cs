@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Server_WCF_IIS.ServiceJava
@@ -10,6 +12,9 @@ namespace Server_WCF_IIS.ServiceJava
     {
         private WebReferenceJEE.SoapService service;
         private static WebServiceJava instance;
+        string key {get;set;}
+        string email { get; set; }
+        bool result { get; set; }
 
         private WebServiceJava()
         {
@@ -27,27 +32,19 @@ namespace Server_WCF_IIS.ServiceJava
                 return instance;
             }
         }
-        public string SendString(string Namefile, string key, string DecryptString)
+        public void SendString(string Namefile, string key, string DecryptString)
         {
-            string Decoded = EncodeBinary(DecryptString);
-            service.SendFileForControlAsync(Namefile, key, Decoded);
-            return null;
+            service.SendFileForControlAsync(Namefile, key, DecryptString);
         }
-        public string SendId(int id)
-        {
-            service.SendResponseTraitement(id);
-            return null;
-        }
-        private string EncodeBinary(string str)
-        {
-            byte[] binaires = Encoding.ASCII.GetBytes(str);
-            string strres = "";
 
-            foreach (byte bin in binaires)
-            {
-                strres += Convert.ToString(bin, 2);
-            }
-            return strres;
+        public bool GetResponse()
+        {
+            WebReferenceJEE.responseclass resultat = service.SendResponseTraitement();
+            key = resultat.Cle;
+            email = resultat.email;
+            result = resultat.FindEmail;
+
+            return result;
         }
     }
 

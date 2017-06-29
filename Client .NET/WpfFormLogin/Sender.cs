@@ -23,7 +23,7 @@ namespace WpfFormLogin
         }
         public string SendFiles(byte[][] files, string[] filename)
         {
-            AuthenticationProxy proxy = new AuthenticationProxy();
+            AuthenticationProxy proxy2 = new AuthenticationProxy();
             MSG msgi = new MSG()
             {
                 Op_name = "LoadFiles",
@@ -31,10 +31,10 @@ namespace WpfFormLogin
                 data = files,
                 TokenUser = "",
             };
-            MessageBox.Show(msgi.Op_infos);
-            msgi = proxy.Dispatching(msgi);
+            msgi = proxy2.Dispatching(msgi);
             return msgi.Op_statut.ToString();
         }
+        
     }
 }
 

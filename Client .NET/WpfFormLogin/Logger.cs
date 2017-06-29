@@ -41,7 +41,6 @@ namespace ClientWPF
                 // TODO add msg.Files
                 msg = proxy.Dispatching(msg);
                 return msg.Op_statut.ToString();
-
             }
         }
     }

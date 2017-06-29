@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://soapservice.com/" targetNamespace="http://soapservice.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="InterruptedException" type="tns:InterruptedException" />
   <xs:element name="JMSException" type="tns:JMSException" />
   <xs:element name="SendFileForControl" type="tns:SendFileForControl" />
   <xs:element name="SendFileForControlResponse" type="tns:SendFileForControlResponse" />
   <xs:element name="SendResponseTraitement" type="tns:SendResponseTraitement" />
   <xs:element name="SendResponseTraitementResponse" type="tns:SendResponseTraitementResponse" />
   <xs:complexType name="SendResponseTraitement">
-    <xs:sequence>
-      <xs:element name="id" type="xs:int" />
-    </xs:sequence>
+    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="SendResponseTraitementResponse">
     <xs:sequence>
-      <xs:element name="return" type="xs:int" />
+      <xs:element minOccurs="0" name="return" type="tns:responseclass" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="responseclass">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FindEmail" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Cle" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="JMSException">
@@ -47,6 +53,11 @@
   <xs:complexType name="SendFileForControlResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InterruptedException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

@@ -12,7 +12,6 @@ namespace Server_WCF_IIS.Decrypt
 {
     class DicoTest : Strategy
     {
-        //public byte[] dico = new byte[1000];
         public char[] CharArray { get; set; }
         public byte[][] FileArray { get; set; }
         string[] fileName;
@@ -31,7 +30,7 @@ namespace Server_WCF_IIS.Decrypt
 
         public override void ReadFile(byte[] byFile)
         {
-            //JMSReference.DecryptWebService obj = new JMSReference.DecryptWebService(); //webservice ref
+            //webservice ref
             char[] delimiterChars = { ' ', ',' };
             var list = new List<string>();
             var fileStream = new FileStream(@"C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Generateur\dico.txt", FileMode.Open, FileAccess.Read);
@@ -56,7 +55,7 @@ namespace Server_WCF_IIS.Decrypt
                 //MessageBox.Show(dico.ToString());
                 DecryptProcess(dico);
             }
-            MessageBox.Show("All Files XOR OK");
+            MessageBox.Show("files","All Files XOR OK");
         }
 
         public void DecryptProcess(byte[] dico)
@@ -67,8 +66,10 @@ namespace Server_WCF_IIS.Decrypt
                 foreach (byte[] file in FileArray)
                 {
                     string res = DecryptInterface(file, dico); //décryptage
+                    MessageBox.Show(res, "resultat");
                     //appel du webservice envoie du string a la plateforme Java
-                    WebServiceJava.Instance.SendString(fileName[j], key, decryptedFile);
+                    WebServiceJava.Instance.SendString(fileName[j], key, res);
+                    WebServiceJava.Instance.GetResponse();
                     j++;
                 }
             }
@@ -83,11 +84,11 @@ namespace Server_WCF_IIS.Decrypt
                     sbOut[i * 6 + j] ^= strKey[j];
                     key = CharArray[j].ToString();
                 }
-                MessageBox.Show(key,"key");
                 //decryptedFile =
             }
+            //MessageBox.Show(key, "key");
             string s = Encoding.UTF8.GetString(sbOut, 0, sbOut.Length);
-            MessageBox.Show(s, "XOR OK");
+            //MessageBox.Show(s, "XOR OK");
             return s;
         }
     }
