@@ -24,6 +24,8 @@ import javax.jws.WebParam;
 @WebService(serviceName = "SoapService")
 public class SoapService {
     
+    SoapTraitement straitement = new SoapTraitement();
+    
     @Resource(mappedName = "jms/fileParsingQueue")
     private Queue queue;
     
@@ -37,21 +39,23 @@ public class SoapService {
     @WebMethod(operationName = "SendFileForControl")
     public int sendFileForTraitement(@WebParam(name = "nameFile") String txt,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText) throws JMSException, InterruptedException {
 
-        context.createProducer().send(queue, txt);
-        //return queuePublicher.getMessage();
         System.out.println(txt);
         System.out.println(key);
         System.out.println(DecrypteText);
+        
+        
+        context.createProducer().send(queue, txt);
+        //return queuePublicher.getMessage();
+  
         
         
         return 52;
     }
     
         @WebMethod(operationName = "SendResponseTraitement")
-        public int sendResponseTraitement(@WebParam(name = "id") int id) throws JMSException {
-
+        public Responseclass sendResponseTraitement() throws JMSException {
           //Check if id it's ok
-          
-        return 52;
+          Responseclass rc = new Responseclass(false,"dzadazd", "dzadaz@zdzad.de");
+          return rc;
     }
 }
