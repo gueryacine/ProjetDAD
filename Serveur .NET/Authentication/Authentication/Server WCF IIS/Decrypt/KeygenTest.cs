@@ -46,7 +46,8 @@ namespace Server_WCF_IIS.Decrypt
                     //MessageBox.Show(decryptedFile, "XOR OK");
                     //appel du webservice envoie du string a la plateforme Java
                     WebServiceJava.Instance.SendString(fileName[i], key, decryptedFile);
-                    Thread task = new Thread(() => { res = GetResponse(); });
+                    Thread.Sleep(1);
+                    /*Thread task = new Thread(() => { res = GetResponse(); });
                     Thread.Sleep(1);
 
                     if (res.FindEmail == true)
@@ -59,7 +60,7 @@ namespace Server_WCF_IIS.Decrypt
                         decrypt = true;
                         // MessageBox.Show(res.ToString(), "fichier Non décrypté");
                     }
-                    i++;
+                    i++;*/
                 }
             }
             return res;

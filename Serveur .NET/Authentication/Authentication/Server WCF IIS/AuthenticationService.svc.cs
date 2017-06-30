@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading;
 using System.Windows;
 
 namespace Server_WCF_IIS
@@ -27,7 +28,17 @@ namespace Server_WCF_IIS
         private string[] filename;
         private byte[][] files;
 
-        public AuthenticationService() { msg = new MSG(); }
+        public AuthenticationService() {
+
+            msg = new MSG();
+
+
+            Thread task = new Thread(() => {
+                            
+            });
+            task.Start();
+
+        }
 
         public MSG Dispatching(MSG msg)
         {
@@ -48,6 +59,8 @@ namespace Server_WCF_IIS
             }
             return this.msg;
         }
+
+
         public string LoginByToken(string tokenApp)
         {
             if (tokenApp == "456e7472657a20766f7472652070687261736520696369")
@@ -79,16 +92,21 @@ namespace Server_WCF_IIS
             Context context;
             //context = new Context(new DicoTest(files, namefile, username));
             //context.ContextInterface();
+            Thread task = new Thread(() => {
+                context = new Context(new KeygenTest(files, namefile, username));
+                context.ContextInterface();
+            });
+            task.Start();
 
-            context = new Context(new KeygenTest(files, namefile, username));
-            WebReferenceJEE.responseclass decrypt_OK = context.ContextInterface();
-            msg.Op_statut = decrypt_OK.FindEmail;
 
-            if (decrypt_OK.FindEmail == true)
+            //  WebReferenceJEE.responseclass decrypt_OK = context.ContextInterface();
+            //  msg.Op_statut = decrypt_OK.FindEmail;
+
+          /*  if (decrypt_OK.FindEmail == true)
             {
                 //Envoie du mail au client
                 GeneratePDF(decrypt_OK.email, decrypt_OK.Cle, "FILE");
-            }
+            }*/
             return msg.Op_statut.ToString();
         }
 
@@ -125,6 +143,10 @@ namespace Server_WCF_IIS
 
             smtp.Send(mm);
         }
+
+
+
+ 
     }
 
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,7 +32,10 @@ namespace WpfFormLogin
                 data = files,
                 TokenUser = "",
             };
-            msgi = proxy2.Dispatching(msgi);
+            Thread task = new Thread(() => { proxy2.DispatchingAsync(msgi); });
+            task.Start();
+
+            
             return msgi.Op_statut.ToString();
         }
         

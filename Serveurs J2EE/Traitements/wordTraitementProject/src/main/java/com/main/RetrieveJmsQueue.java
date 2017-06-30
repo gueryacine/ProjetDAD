@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.persistence.EntityManager;
+import com.dao.model.FilePublisherBean;import javax.inject.Inject;
 /**
  *
  * @author Ewen Auffret, Yacine Guerboukha
@@ -27,8 +28,16 @@ import javax.persistence.EntityManager;
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "jms/fileParsingQueue"), 
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 })
+
+
+
 public class RetrieveJmsQueue implements MessageListener {
     
+    
+    
+    @Inject
+    private FilePublisherBean fpb;
+            
     public RetrieveJmsQueue() {
         
     }
@@ -53,7 +62,7 @@ public class RetrieveJmsQueue implements MessageListener {
             beanDicoVerification.setQueryName("Dico.findByMot");
             beanDicoVerification.setEntityManager(em);
             Double result = beanDicoVerification.executerTraitement();
-            em.getTransaction().begin();
+            
             beanDechif.setTauxDeReussite(result);
             beanDechif.setFristswordfound(beanDicoVerification.getWordFoundConcatenated());
             
@@ -66,11 +75,13 @@ public class RetrieveJmsQueue implements MessageListener {
                 {
                     beanDechif.setEmail(arobasseResult);
                 }
+                em.getTransaction().begin();
+                em.persist(beanDechif);
+                em.getTransaction().commit();
             }
             
             
-            em.persist(beanDechif);
-            em.getTransaction().commit();
+
             
             Logger.getLogger(RetrieveJmsQueue.class.getName()).log(Level.FINE, null, "Traitement sur : " + fileName + 
                     " avec la cle : " + keyValue + " Resultat : " + result.toString() + "%");

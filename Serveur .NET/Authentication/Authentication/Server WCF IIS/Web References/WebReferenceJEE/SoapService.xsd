@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://soapservice.com/" targetNamespace="http://soapservice.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="InterruptedException" type="tns:InterruptedException" />
   <xs:element name="JMSException" type="tns:JMSException" />
   <xs:element name="SendFileForControl" type="tns:SendFileForControl" />
   <xs:element name="SendFileForControlResponse" type="tns:SendFileForControlResponse" />
@@ -52,12 +51,7 @@
   </xs:complexType>
   <xs:complexType name="SendFileForControlResponse">
     <xs:sequence>
-      <xs:element name="return" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="InterruptedException">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="message" type="xs:string" />
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

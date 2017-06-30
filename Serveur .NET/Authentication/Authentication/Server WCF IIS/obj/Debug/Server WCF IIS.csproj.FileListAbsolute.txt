@@ -11,3 +11,11 @@ C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\bin\MySql.Web.xml
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\obj\Debug\Server WCF IIS.dll
 C:\Users\Caraï\Desktop\ProjetDAD-master\ProjetDAD-master\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\obj\Debug\Server WCF IIS.pdb
+D:\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\bin\Server WCF IIS.dll.config
+D:\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\bin\Server WCF IIS.dll
+D:\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\bin\Server WCF IIS.pdb
+D:\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\bin\itextsharp.dll
+D:\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\bin\itextsharp.xml
+D:\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\obj\Debug\Server WCF IIS.dll
+D:\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\obj\Debug\Server WCF IIS.pdb
+D:\ProjetDAD\Serveur .NET\Authentication\Authentication\Server WCF IIS\obj\Debug\Server WCF IIS.csprojResolveAssemblyReference.cache

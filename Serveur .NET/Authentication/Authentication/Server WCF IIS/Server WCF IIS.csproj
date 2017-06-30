@@ -128,10 +128,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://10.131.128.80:20080/fileQueue/SoapService%3fWSDL">
+    <WebReferenceUrl Include="http://localhost:20080/fileQueue/SoapService%3fWSDL">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WebReferenceJEE\</RelPath>
-      <UpdateFromURL>http://10.131.128.80:20080/fileQueue/SoapService%3fWSDL</UpdateFromURL>
+      <UpdateFromURL>http://localhost:20080/fileQueue/SoapService%3fWSDL</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

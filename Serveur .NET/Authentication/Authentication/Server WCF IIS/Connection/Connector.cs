@@ -29,7 +29,7 @@ namespace Server_WCF_IIS
 
         private void InitConnexion()
         {
-            string connectionString = "SERVER=192.168.99.100; DATABASE=dad_db; UID=root; PASSWORD=root";
+            string connectionString = "SERVER=localhost; DATABASE=dad_db; UID=root";
             connection = new MySqlConnection(connectionString);
         }
         //connect to db

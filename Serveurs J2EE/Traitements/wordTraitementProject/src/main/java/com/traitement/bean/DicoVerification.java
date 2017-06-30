@@ -49,10 +49,10 @@ public class DicoVerification extends ATraitementClass<Float> implements Seriali
     @Override
     public Double executerTraitement() {
         splitText();
-        double countpart = 40;
+        double countpart = 10;
         double conteur = 0;
         if(parts != null ){
-            if( parts.length < 40)
+            if( parts.length < 10)
             {
                 countpart = parts.length;
             }

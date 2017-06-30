@@ -26,7 +26,7 @@ namespace Server_WCF_IIS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://10.131.128.80:20080/fileQueue/SoapService")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:20080/fileQueue/SoapService")]
         public string Server_WCF_IIS_WebReferenceJEE_SoapService {
             get {
                 return ((string)(this["Server_WCF_IIS_WebReferenceJEE_SoapService"]));

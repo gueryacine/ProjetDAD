@@ -26,6 +26,9 @@ namespace WpfFormLogin.AuthenticationReference {
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] FileNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string Op_infosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -64,6 +67,19 @@ namespace WpfFormLogin.AuthenticationReference {
                 if ((object.ReferenceEquals(this.EmailField, value) != true)) {
                     this.EmailField = value;
                     this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] FileName {
+            get {
+                return this.FileNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
+                    this.FileNameField = value;
+                    this.RaisePropertyChanged("FileName");
                 }
             }
         }
@@ -185,17 +201,17 @@ namespace WpfFormLogin.AuthenticationReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoginByToken", ReplyAction="http://tempuri.org/IAuthenticationService/LoginByTokenResponse")]
         System.Threading.Tasks.Task<string> LoginByTokenAsync(string tokenApp);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Dispatchingg", ReplyAction="http://tempuri.org/IAuthenticationService/DispatchinggResponse")]
+        void Dispatchingg(WpfFormLogin.AuthenticationReference.MSG msg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Dispatchingg", ReplyAction="http://tempuri.org/IAuthenticationService/DispatchinggResponse")]
+        System.Threading.Tasks.Task DispatchinggAsync(WpfFormLogin.AuthenticationReference.MSG msg);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Dispatching", ReplyAction="http://tempuri.org/IAuthenticationService/DispatchingResponse")]
         WpfFormLogin.AuthenticationReference.MSG Dispatching(WpfFormLogin.AuthenticationReference.MSG msg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Dispatching", ReplyAction="http://tempuri.org/IAuthenticationService/DispatchingResponse")]
         System.Threading.Tasks.Task<WpfFormLogin.AuthenticationReference.MSG> DispatchingAsync(WpfFormLogin.AuthenticationReference.MSG msg);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoadFiles", ReplyAction="http://tempuri.org/IAuthenticationService/LoadFilesResponse")]
-        string LoadFiles(byte[][] files);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/LoadFiles", ReplyAction="http://tempuri.org/IAuthenticationService/LoadFilesResponse")]
-        System.Threading.Tasks.Task<string> LoadFilesAsync(byte[][] files);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -241,20 +257,20 @@ namespace WpfFormLogin.AuthenticationReference {
             return base.Channel.LoginByTokenAsync(tokenApp);
         }
         
+        public void Dispatchingg(WpfFormLogin.AuthenticationReference.MSG msg) {
+            base.Channel.Dispatchingg(msg);
+        }
+        
+        public System.Threading.Tasks.Task DispatchinggAsync(WpfFormLogin.AuthenticationReference.MSG msg) {
+            return base.Channel.DispatchinggAsync(msg);
+        }
+        
         public WpfFormLogin.AuthenticationReference.MSG Dispatching(WpfFormLogin.AuthenticationReference.MSG msg) {
             return base.Channel.Dispatching(msg);
         }
         
         public System.Threading.Tasks.Task<WpfFormLogin.AuthenticationReference.MSG> DispatchingAsync(WpfFormLogin.AuthenticationReference.MSG msg) {
             return base.Channel.DispatchingAsync(msg);
-        }
-        
-        public string LoadFiles(byte[][] files) {
-            return base.Channel.LoadFiles(files);
-        }
-        
-        public System.Threading.Tasks.Task<string> LoadFilesAsync(byte[][] files) {
-            return base.Channel.LoadFilesAsync(files);
         }
     }
 }

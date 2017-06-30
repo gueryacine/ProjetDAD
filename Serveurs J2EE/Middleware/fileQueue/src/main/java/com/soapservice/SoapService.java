@@ -45,6 +45,7 @@ public class SoapService {
     public boolean sendFileForTraitement(@WebParam(name = "nameFile") String fileString,@WebParam(name = "key") String key,@WebParam(name = "DecrypteString") String DecrypteText)throws JMSException{
         try
         {
+
         SoapTraitement straitement = new SoapTraitement();
         DecrypteText=  straitement.TransformationFonction(DecrypteText);
 

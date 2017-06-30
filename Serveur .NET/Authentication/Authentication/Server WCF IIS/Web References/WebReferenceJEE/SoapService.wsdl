@@ -2,42 +2,50 @@
 <definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://soapservice.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="SoapService" targetNamespace="http://soapservice.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <xsd:schema>
-      <xsd:import schemaLocation="http://10.131.128.80:20080/fileQueue/SoapService?xsd=1" namespace="http://soapservice.com/" />
+      <xsd:import schemaLocation="http://localhost:20080/fileQueue/SoapService?xsd=1" namespace="http://soapservice.com/" />
     </xsd:schema>
   </types>
-  <message name="SendResponseTraitement">
-    <part name="parameters" element="tns:SendResponseTraitement" />
-  </message>
-  <message name="SendResponseTraitementResponse">
-    <part name="parameters" element="tns:SendResponseTraitementResponse" />
-  </message>
-  <message name="JMSException">
-    <part name="fault" element="tns:JMSException" />
-  </message>
   <message name="SendFileForControl">
     <part name="parameters" element="tns:SendFileForControl" />
   </message>
   <message name="SendFileForControlResponse">
     <part name="parameters" element="tns:SendFileForControlResponse" />
   </message>
-  <message name="InterruptedException">
-    <part name="fault" element="tns:InterruptedException" />
+  <message name="JMSException">
+    <part name="fault" element="tns:JMSException" />
+  </message>
+  <message name="SendResponseTraitement">
+    <part name="parameters" element="tns:SendResponseTraitement" />
+  </message>
+  <message name="SendResponseTraitementResponse">
+    <part name="parameters" element="tns:SendResponseTraitementResponse" />
   </message>
   <portType name="SoapService">
+    <operation name="SendFileForControl">
+      <input wsam:Action="http://soapservice.com/SoapService/SendFileForControlRequest" message="tns:SendFileForControl" />
+      <output wsam:Action="http://soapservice.com/SoapService/SendFileForControlResponse" message="tns:SendFileForControlResponse" />
+      <fault wsam:Action="http://soapservice.com/SoapService/SendFileForControl/Fault/JMSException" name="JMSException" message="tns:JMSException" />
+    </operation>
     <operation name="SendResponseTraitement">
       <input wsam:Action="http://soapservice.com/SoapService/SendResponseTraitementRequest" message="tns:SendResponseTraitement" />
       <output wsam:Action="http://soapservice.com/SoapService/SendResponseTraitementResponse" message="tns:SendResponseTraitementResponse" />
       <fault wsam:Action="http://soapservice.com/SoapService/SendResponseTraitement/Fault/JMSException" name="JMSException" message="tns:JMSException" />
     </operation>
-    <operation name="SendFileForControl">
-      <input wsam:Action="http://soapservice.com/SoapService/SendFileForControlRequest" message="tns:SendFileForControl" />
-      <output wsam:Action="http://soapservice.com/SoapService/SendFileForControlResponse" message="tns:SendFileForControlResponse" />
-      <fault wsam:Action="http://soapservice.com/SoapService/SendFileForControl/Fault/JMSException" name="JMSException" message="tns:JMSException" />
-      <fault wsam:Action="http://soapservice.com/SoapService/SendFileForControl/Fault/InterruptedException" name="InterruptedException" message="tns:InterruptedException" />
-    </operation>
   </portType>
   <binding name="SoapServicePortBinding" type="tns:SoapService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="SendFileForControl">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JMSException">
+        <soap:fault use="literal" name="JMSException" namespace="" />
+      </fault>
+    </operation>
     <operation name="SendResponseTraitement">
       <soap:operation soapAction="" />
       <input>
@@ -50,25 +58,10 @@
         <soap:fault use="literal" name="JMSException" namespace="" />
       </fault>
     </operation>
-    <operation name="SendFileForControl">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="JMSException">
-        <soap:fault use="literal" name="JMSException" namespace="" />
-      </fault>
-      <fault name="InterruptedException">
-        <soap:fault use="literal" name="InterruptedException" namespace="" />
-      </fault>
-    </operation>
   </binding>
   <service name="SoapService">
     <port name="SoapServicePort" binding="tns:SoapServicePortBinding">
-      <soap:address location="http://10.131.128.80:20080/fileQueue/SoapService" />
+      <soap:address location="http://localhost:20080/fileQueue/SoapService" />
     </port>
   </service>
 </definitions>
