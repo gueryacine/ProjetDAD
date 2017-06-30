@@ -78,3 +78,7 @@ Pour le client .JEE
 
 ![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Class%201.PNG "Classe 1")
 ![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Class%202.PNG "Classe 2")
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Class%203.PNG "Classe 3")
+
+### Diagramme de Classes
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Deployement.PNG "Deployement")
