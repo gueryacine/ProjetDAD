@@ -38,16 +38,43 @@ Type____________________________________________Temps___________________________
 
 ![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Sch%C3%A9mas/DecoupageFonctionnel.PNG "DecoupageFonctionnel")
 
+### Analyse Fonction :
+
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Sch%C3%A9mas/Suivi_De_Projet_Code_Couleur.PNG "Explication")
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Sch%C3%A9mas/Suivi_De_Projet_1.PNG "Fonction 1")
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Sch%C3%A9mas/Suivi_De_Projet_2.PNG "Fonction 2")
+
 ### UML :
 
 #### Diagramme de USE CASE
 
+Pour le client .NET
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/USE%20CASE%201.PNG "UseCaseClient.Net")
+
+Pour la partie Web
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/USE%20CASE%202.PNG "UseCaseWeb.JSF")
+
 #### Diagramme de Activity
+
+Pour le client .NET
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Activity%201.PNG "ActivityClient.Net 1")
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Acitivity%202.PNG "ActivityClient.Net 2")
+
+Pour le client .JEE
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Activity%203.PNG "ActivityJEE.Net 1")
 
 #### Diagramme de Sequence 
 
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Sequence%202.PNG "Sequence 1")
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Sequence%201.PNG "Sequence 2")
+
 ## Solution :
+### Diagramme de Composant
+
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Component%201.PNG "Component 1")
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Component%202.PNG "Component 2")
 
 ### Diagramme de Classes
 
-### Diagramme de Composant
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Class%201.PNG "Classe 1")
+![alt text](https://github.com/gueryacine/ProjetDAD/blob/master/Diagrammes/Class%202.PNG "Classe 2")
