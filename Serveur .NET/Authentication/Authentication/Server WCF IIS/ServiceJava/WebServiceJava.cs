@@ -38,8 +38,17 @@ namespace Server_WCF_IIS.ServiceJava
         }
         public WebReferenceJEE.responseclass GetResponse()
         {
-            WebReferenceJEE.responseclass resultat = service.SendResponseTraitement();
-            return resultat;
+            try
+            {
+                WebReferenceJEE.responseclass resultat = service.SendResponseTraitement();
+
+                return resultat;
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+            
         }
     }
 

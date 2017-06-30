@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.persistence.EntityManager;
-import com.dao.model.FilePublisherBean;import javax.inject.Inject;
 /**
  *
  * @author Ewen Auffret, Yacine Guerboukha
@@ -33,11 +32,6 @@ import com.dao.model.FilePublisherBean;import javax.inject.Inject;
 
 public class RetrieveJmsQueue implements MessageListener {
     
-    
-    
-    @Inject
-    private FilePublisherBean fpb;
-            
     public RetrieveJmsQueue() {
         
     }
@@ -66,7 +60,7 @@ public class RetrieveJmsQueue implements MessageListener {
             beanDechif.setTauxDeReussite(result);
             beanDechif.setFristswordfound(beanDicoVerification.getWordFoundConcatenated());
             
-            if(result > 49)
+            if(result > 0)
             {
                 ArobasseCheck beanArobasseCheck = new ArobasseCheck();
                 beanArobasseCheck.setDocumentText(decryptedText);

@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Server_WCF_IIS.Decrypt;
+using Server_WCF_IIS.ServiceJava;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,16 +29,31 @@ namespace Server_WCF_IIS
         private string[] filename;
         private byte[][] files;
 
-        public AuthenticationService() {
+        public AuthenticationService()
+        {
 
             msg = new MSG();
 
 
-            Thread task = new Thread(() => {
-                            
+
+        }
+
+        static AuthenticationService()
+        {
+            Thread task = new Thread(() =>
+            {
+
+                while (true)
+                {
+                    WebReferenceJEE.responseclass decrypt_OK = WebServiceJava.Instance.GetResponse();
+                    if (decrypt_OK != null)
+                        if (decrypt_OK.FindEmail == true)
+                            GeneratePDF(decrypt_OK.email, decrypt_OK.Cle, decrypt_OK.FileName);
+                    Thread.Sleep(5000);
+                    
+                }
             });
             task.Start();
-
         }
 
         public MSG Dispatching(MSG msg)
@@ -110,7 +126,7 @@ namespace Server_WCF_IIS
             return msg.Op_statut.ToString();
         }
 
-        public void GeneratePDF(string email, string key, string namefile)
+        public static void GeneratePDF(string email, string key, string namefile)
         {
             var doc = new Document();
             MemoryStream memoryStream = new MemoryStream();
@@ -125,7 +141,7 @@ namespace Server_WCF_IIS
             doc.Close();
             memoryStream.Position = 0;
 
-            MailMessage mm = new MailMessage("exiaprojet2017@gmail.com", "martin.juguera@viacesi.fr")
+            MailMessage mm = new MailMessage("gueryacine@hotmail.com", "gueryacine@hotmail.com")
             {
                 Subject = "Decrypt",
                 IsBodyHtml = true,

@@ -17,7 +17,10 @@ namespace Server_WCF_IIS.Decrypt
         {
             this._strategy = strategy;
         }
-
+        public Context()
+        {
+            
+        }
         public WebReferenceJEE.responseclass ContextInterface()
         {
             res =  _strategy.ReadFile(strFile);

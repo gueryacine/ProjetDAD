@@ -15,6 +15,7 @@
   </xs:complexType>
   <xs:complexType name="responseclass">
     <xs:sequence>
+      <xs:element minOccurs="0" name="FileName" type="xs:string" />
       <xs:element minOccurs="0" name="FindEmail" type="xs:boolean" />
       <xs:element minOccurs="0" name="Cle" type="xs:string" />
       <xs:element minOccurs="0" name="email" type="xs:string" />

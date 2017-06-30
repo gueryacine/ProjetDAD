@@ -1,4 +1,7 @@
+com\dao\model\Dechiffrage.class
+com\soapservice\SoapTraitement.class
 com\filepublisher\FilePublisherBean.class
 com\soapservice\Responseclass.class
-com\soapservice\SoapTraitement.class
 com\soapservice\SoapService.class
+com\dao\model\Dechiffrage_.class
+com\dao\model\EntityManagerController.class

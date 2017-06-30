@@ -16,7 +16,7 @@ import javax.persistence.Persistence;
  */
 public class EntityManagerController {
 //    @PersistenceContext("com_wordTraitementProject_ejb_1.0-SNAPSHOTPU")
-    private EntityManagerFactory emf;
+     private EntityManagerFactory emf;
      
      private EntityManager em;
 

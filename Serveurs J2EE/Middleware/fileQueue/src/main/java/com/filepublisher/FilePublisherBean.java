@@ -6,18 +6,14 @@
 package com.filepublisher;
 
 import java.io.Serializable;
-import java.util.Enumeration;
 import javax.annotation.Resource;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.jms.BytesMessage;
-import javax.jms.Destination;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Queue;
-import javax.jms.QueueConnection;
 /**
  *
  * @author Ewen Auffret

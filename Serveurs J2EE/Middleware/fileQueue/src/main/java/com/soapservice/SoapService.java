@@ -5,7 +5,10 @@
  */
 package com.soapservice;
 
+import com.dao.model.Dechiffrage;
+import com.dao.model.EntityManagerController;
 import com.filepublisher.FilePublisherBean;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.jms.JMSConnectionFactory;
@@ -15,6 +18,9 @@ import javax.jms.Queue;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 
 /**
  *
@@ -36,6 +42,8 @@ public class SoapService {
     private FilePublisherBean fpb;
     
     SoapTraitement straitement = new SoapTraitement();
+    
+
     
     /**
      * This is a sample web service operation
@@ -66,8 +74,32 @@ public class SoapService {
     
         @WebMethod(operationName = "SendResponseTraitement")
         public Responseclass sendResponseTraitement() throws JMSException {
-          //Check if id it's ok
-          Responseclass rc = new Responseclass(false,"dzadazd", "dzadaz@zdzad.de");
-          return rc;
+            EntityManagerController emc = new EntityManagerController();
+            EntityManager em = emc.getEm();
+            EntityTransaction etx = em.getTransaction();
+            etx.begin();
+            List<Dechiffrage> list_dich = em.createNamedQuery("Dechiffrage.findBySend").setParameter("send", 0).getResultList();
+            if(list_dich.isEmpty() == false)
+            {
+                Dechiffrage dechiffrage = list_dich.get(0);
+                Responseclass response = new Responseclass(true, dechiffrage.getCleDecodage(), dechiffrage.getEmail(),dechiffrage.getPathTxtFichier());
+                
+                if(!em.getTransaction().isActive())
+                    em.getTransaction().begin();
+
+
+                dechiffrage.setSend(1);
+                etx.commit();
+                System.out.println(list_dich.get(0).getIdDechiffrage());
+                
+                return response;
+            }
+            etx.commit();
+            
+            
+            
+            
+          
+          return null;
     }
 }
